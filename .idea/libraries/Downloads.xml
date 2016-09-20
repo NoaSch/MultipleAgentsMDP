@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Downloads">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/burlap-3.0.1-jar-with-dependencies.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/opencsv-3.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
