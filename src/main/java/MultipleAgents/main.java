@@ -89,7 +89,8 @@ public class main {
 
         MultipleAgentsVI(3, 2, 1);
 
-    //    MultipleAgentsUCT(3, 2, 1, 500, 50);
+
+       MultipleAgentsUCT(3, 2, 1, 500, 50);
     }
  //   }
    // }
