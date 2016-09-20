@@ -28,22 +28,20 @@ public class DataMulesDomain implements DomainGenerator {
 
         // String arr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
         vec.clear();
-        String arr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+1)+MAX_BROKEN+1];
+        //String arr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+1)+MAX_BROKEN+1];
+           String arr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+2)];
            int rIndex = 0;
         int idx = 0;
         for(int i = 0; i < NUM_OF_AGENTS; i++) {
-            arr[idx] = "s";
+            arr[idx] = ACTION_STAY;
             idx++;
-
+            arr[idx] = ACTION_REPAIR;
+            idx++;
             for(int k = 0; k < NUM_OF_SENSORS; k++) {
                 arr[idx] = ""+ k;
                 idx++;
             }
-            if(rIndex<=MAX_BROKEN) {
-                arr[idx] = "r";
-                idx++;
-                rIndex++;
-            }
+
         }
  /*          for(int i = 0; i <= MAX_BROKEN; i++) {
                arr[idx] = "r";

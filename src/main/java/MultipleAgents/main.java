@@ -87,10 +87,10 @@ public class main {
         writerAllUCT.write(sbUCT.toString());
         writerAllUCT.flush();
 
-        MultipleAgentsVI(3, 2, 1);
+        MultipleAgentsVI(2, 2, 1);
 
 
-       MultipleAgentsUCT(3, 2, 1, 500, 50);
+   //    MultipleAgentsUCT(3, 2, 1, 500, 50);
     }
  //   }
    // }
