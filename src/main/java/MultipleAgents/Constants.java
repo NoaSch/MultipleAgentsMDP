@@ -16,7 +16,7 @@ public class Constants {
 
     public static String OUTPUT_PATH = "output/";
     public static double DISCOUNT = 0.99;
-    public static int MOVING_COST = 1;
+    public static double MOVING_COST = 0.1;
     public static double FIXING_COST = 0;
 
   //  public static final String ACTION_STAY = "stay";

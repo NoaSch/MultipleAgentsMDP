@@ -4,6 +4,7 @@ import burlap.behavior.policy.Policy;
 import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.auxiliary.StateReachability;
+import burlap.behavior.singleagent.planning.Planner;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
 import burlap.mdp.core.oo.state.generic.GenericOOState;
 import burlap.mdp.core.state.State;
@@ -24,9 +25,16 @@ import static MultipleAgents.Constants.*;
  */
 public class main {
 
-    public static PrintWriter writerAllVI;
-    public static PrintWriter writerAllUCT;
+    public static PrintWriter writerAll;
 
+
+
+
+    public static void main3(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter avgVI = new PrintWriter(OUTPUT_PATH + "avgVI" + ".csv");
+        PrintWriter avgUCT = new PrintWriter(OUTPUT_PATH + "avgUCT" + ".csv");
+
+    }
     public static void main2(String[] args) {
        /* String [] strArr = {"s","0","1","r","s","0","1","r"};
         printCombination(strArr,8,2);
@@ -47,51 +55,67 @@ public class main {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
         //writerAllVI = new PrintWriter(OUTPUT_PATH + "allSum"+numUCT+".txt", "UTF-8");
-        writerAllVI = new PrintWriter(OUTPUT_PATH + "vi" + ".csv");
-        writerAllUCT = new PrintWriter(OUTPUT_PATH + "allSumUCTsundaytest" + ".csv");
-        StringBuilder sbUCT = new StringBuilder();
-        sbUCT.append("number of Sensors");
-        sbUCT.append(',');
-        sbUCT.append("number of Agents");
-        sbUCT.append(',');
-        sbUCT.append("horizon");
-        sbUCT.append(',');
-        sbUCT.append("number of rollouts");
-        sbUCT.append(',');
-        sbUCT.append("test number");
-        sbUCT.append(',');
-        sbUCT.append("total reward");
-        sbUCT.append(',');
-        sbUCT.append("num of visits");
-        sbUCT.append(',');
-        sbUCT.append("runTime(ms)");
-        sbUCT.append('\n');
+        //writerAllVI = new PrintWriter(OUTPUT_PATH + "vi" + ".csv");
+        writerAll = new PrintWriter(OUTPUT_PATH + "results/allSum" + ".csv");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Algorithm name");
+        sb.append(',');
+        sb.append("# Iterations");
+        sb.append(',');
+        sb.append("Horizon");
+        sb.append(',');
+        sb.append("Instance");
+        sb.append(',');
+        sb.append("Accumulated reward ");
+        sb.append(',');
+        sb.append("# rollouts");
+        sb.append(',');
+        sb.append("Planning runtime");
+        sb.append(',');
+        sb.append("total runtime");
+        sb.append(',');
+        sb.append("# Sensors");
+        sb.append(',');
+        sb.append("# Robots");
+        sb.append(',');
+        sb.append("p ");
+        sb.append(',');
+        sb.append("B (Max New Faults)");
+        sb.append('\n');
+        writerAll.write(sb.toString());
+        writerAll.flush();
 
-     /*   writerAllVI = new PrintWriter(OUTPUT_PATH + "allSumVINew " + ".csv");
-        StringBuilder sbVI = new StringBuilder();
-        sbVI.append("number of Sensors");
-        sbVI.append(',');
-        sbVI.append("number of Agents");
-        sbVI.append(',');
-        sbVI.append("test number");
-        sbVI.append(',');
-        sbVI.append("total reward");
-        sbVI.append(',');
-        sbVI.append("runTime(ms)");
-        sbVI.append('\n');
-         //writerAllVI.write(sb.toString());
-        // writerAllVI.flush();
-       writerAllVI.write(sbVI.toString());
-        writerAllVI.flush();
-       // MultipleAgentsVI(4, 4, 1);*/
-        writerAllUCT.write(sbUCT.toString());
-        writerAllUCT.flush();
-
-        MultipleAgentsVI(2, 2, 1);
+        for (int se = 1; se <= 3; se++)
+            for (int ag = 1; ag <= se; ag++){
+                runAlgorithm("vi",se, ag, 1, 0, 2);
+                for (int i = 1; i <= 5; i++) {
+                    runAlgorithm("uct",se, ag, i, 500, 2);
+                }}
+/*
+        int horizon =2;
+        for (int numUCT = 50; numUCT < 500; numUCT = numUCT + 100)
+            for (int se = 1; se <= 4; se++)
+                for (int ag = 1; ag <= se; ag++)
+                    for (int i = 1; i <= 10; i++) {
+                        runAlgorithm("uct",se, ag, i, numUCT, horizon);
+                    }
+            for (int se = 1; se <= 4; se++)
+                for (int ag = 1; ag <= se; ag++)
+                    for (int i = 1; i <= 10; i++) {
+                        runAlgorithm("vi",se, ag, i, 0, horizon);
+                    }*/
 
 
-   //    MultipleAgentsUCT(3, 2, 1, 500, 50);
+        // MultipleAgentsVI(2, 2, 1);
+
+
     }
+
+
+
+           // MultipleAgentsVI(2, 1, i);
+       // }
+  //  }
  //   }
    // }
        // writerAllVI.close();
@@ -100,54 +124,33 @@ public class main {
                 pw.write(sb.toString());
                  MultipleAgentsVI(4,4,i);
                 pw.close();    MultipleAgentsUCT(4,4,i);*/
-    /*  for (int horizon = 5; horizon < 25; horizon = horizon + 5)
-            for (int numUCT = 50; numUCT < 500; numUCT = numUCT + 400)
-                for (int se = 1; se <= 4; se++)
-
-                    for (int ag = 1; ag <= se; ag++) {
-                        for (int i = 1; i <= 5; i++) {
-                            //MultipleAgentsUCT(6, 6, i, 50, 5);
-                           MultipleAgentsUCT(se, ag, i, numUCT, horizon);*/
-
-                   //     }}
 
 
+  /*      for (int se = 1; se <= 3; se++)
+            for (int ag = 1; ag <= se; ag++)
+                for (int i = 1; i <= 3; i++)
+                    MultipleAgentsVI(se, ag, 1);
 
+      for (int horizon = 2; horizon < 20; horizon = horizon + 5)
+            for (int numUCT = 50; numUCT < 500; numUCT = numUCT + 200)
+            for (int se = 1; se <= 4; se++)
+                    for (int ag = 1; ag <= se; ag++)
+       for (int i = 1; i <= 3; i++) {
+            //MultipleAgentsUCT(6, 6, i, 50, 5);
+            MultipleAgentsUCT(se, ag, 1, numUCT, horizon);
+        }
 
-       /* for (int horizon = 5; horizon < 25; horizon = horizon + 5)
-            for (int numUCT = 50; numUCT < 500; numUCT = numUCT + 400)
-                    for (int ag = 1; ag <= 5; ag++) {
-                        for (int i = 1; i <= 5; i++) {
-                            //MultipleAgentsUCT(6, 6, i, 50, 5);
-                            MultipleAgentsUCT(5, ag, i, numUCT, horizon);
-
-                        }}
-
-
-    }
-
-                     //   }
-                 //  }
-
-
-      /*  for (int se = 1; se <= 5; se++)
-
-            for (int ag = 1; ag <= se; ag++) {
-                for (int i = 1; i <= 5; i++) {
-
-                    MultipleAgentsVI(se, ag, i);
-                }
-                }
+        for (int ag = 1; ag <= 4; ag++)
+            for (int i = 1; i <= 3; i++)
+                MultipleAgentsVI(4, ag, 1);
 
 
                 writerAllVI.close();
-                 // writerAllUCT.close();
+                  writerAllUCT.close();
 
-            }
-   // }
-*/
+            }*/
 
-    private static void MultipleAgentsVI(int nSensors, int nAgents, int testNum) {
+    private static void runAlgorithm(String algorithm, int nSensors, int nAgents, int testNum, int horizon, int numUCT) {
 
         NUM_OF_AGENTS = nAgents;
         NUM_OF_SENSORS = nSensors;
@@ -162,20 +165,26 @@ public class main {
 
         long startTime = System.currentTimeMillis();
 
-        ValueIteration planner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 100);
+        Planner planner = null;
+        if(algorithm.equals("vi")) {
+             planner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 100);
+        }
+       else  if(algorithm.equals("uct")) {
+            planner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
+        }
+
         Policy p = planner.planFromState(initialState);
-        long endTime = System.currentTimeMillis();
-        long totalTime = endTime - startTime;
+        long endTimePlan = System.currentTimeMillis();
+        long totalTimePlan = endTimePlan - startTime;
 
-        //  System.out.println(totalTime/);
 
-        // ValueIteration v = (ValueIteration) planner;
-
-        //System.out.println( "value::::: " +v.value(initialState));
 
 
         Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
-        ep.write(OUTPUT_PATH+ nSensors + " Sensors ," + nAgents + " Agents viMult");
+        ep.write(OUTPUT_PATH+"episodes/"+ nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm);
+
+        long endTimeTot = System.currentTimeMillis();
+        long totalTimeTot = endTimeTot - startTime;
 
 
        // oPolicyUtils.rollout(p, initialState, domain.getModel(),TOTAL_TIME_STEPS).write(OUTPUT_PATH + "viMult");
@@ -189,8 +198,9 @@ public class main {
         }
 
         try {
-            printPolicy(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum + ".txt", totalReward, totalTime, testNum);
-             //printPolicy(writerAllVI, p, initialState,OUTPUT_PATH + nSensors + "," + nAgents + "," +testNum + ".txt", totalReward, totalTime, testNum);
+           //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
+             writeResults(algorithm, numUCT, horizon, writerAll, totalReward, totalTimePlan,totalTimeTot, testNum);
+            writePolicy(OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -201,24 +211,75 @@ public class main {
     //    System.out.println("VI runTime: " + totalTime + " miliseconds");///1000);
     }
 
-    public static void printPolicy( PrintWriter writerAll, Policy p, State initialState, List<State> allStates, String output, double totReward, long totalTime, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
-   // public static void printPolicy( PrintWriter writerAll, Policy p, State initialState, String output, double totReward, long totalTime, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
+    //public static void writeResults( PrintWriter writerAll, Policy p, State initialState, List<State> allStates, String output, double totReward, long totalTime, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
+        public static void writeResults( String algorithm,int numOfUCT, int horizon, PrintWriter writerAll, double totReward, long totalTimePlan,long totalTimeTot, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
 
-        PrintWriter writer = new PrintWriter(output);
+        //PrintWriter writer = new PrintWriter(output + ".csv");
         StringBuilder sb = new StringBuilder();
-        sb.append(NUM_OF_SENSORS);
-        sb.append(',');
-        sb.append(NUM_OF_AGENTS);
-        sb.append(',');
-        sb.append(testNum);
-        sb.append(',');
-        sb.append(totReward);
-        sb.append(',');
-        sb.append(totalTime);
-        sb.append('\n');
-        writerAll.write(sb.toString());
-        writerAll.flush();
+            sb.append(algorithm);
+            sb.append(',');
+            if(algorithm.equals("uct")) {
+                sb.append(numOfUCT);
+                sb.append(',');
+                sb.append(horizon);
+                sb.append(',');
+            }
+            else if(algorithm.equals("vi"))
+            {
+                sb.append("N/A");
+                sb.append(',');
+                sb.append("N/A");
+                sb.append(',');
+            }
+            sb.append(testNum);
+            sb.append(',');
+            sb.append(totReward);
+            sb.append(',');
+            sb.append(TOTAL_TIME_STEPS);
+            sb.append(',');
+            sb.append(totalTimePlan);
+            sb.append(',');
+            sb.append(totalTimeTot);
+            sb.append(',');
+            sb.append(NUM_OF_SENSORS);
+            sb.append(',');
+            sb.append(NUM_OF_AGENTS);
+            sb.append(',');
+            sb.append(PROB_SENSOR_BREAK);
+            sb.append(',');
+            sb.append(MAX_BROKEN);
+            sb.append('\n');
+            writerAll.write(sb.toString());
+            writerAll.flush();
 
+    }
+
+    public static void writePolicy(String output, Policy p, List<State> allStates)
+    {
+        try {
+            PrintWriter writer = new PrintWriter(output + ".csv");
+            StringBuilder sbPol = new StringBuilder();
+            sbPol.append("State");
+            sbPol.append(',');
+            sbPol.append("action");
+            sbPol.append('\n');
+            writer.write(sbPol.toString());
+            writer.flush();
+            for (State s : allStates) {
+                sbPol = new StringBuilder();
+                sbPol.append(s.toString());
+                sbPol.append(',');
+                sbPol.append(p.action(s));
+                sbPol.append('\n');
+                writer.write(sbPol.toString());
+                writer.flush();
+        }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+        //}
+/*
         for (State s : allStates) {
             writer.println("State: " + s);
             writer.println("Action: " + p.action(s));
@@ -227,8 +288,10 @@ public class main {
         writer.println();
         writer.println("Total Reward: " + totReward);
         writer.println("runTime: " + totalTime + " miliseconds");//1000);*/
-        writer.flush();
-        writer.close();
+          //  writer.flush();
+           // writer.close();
+      //  }
+
         /*writerAllVI.println();
         writerAllVI.println(NUM_OF_SENSORS + " sensors");
         writerAllVI.println(NUM_OF_AGENTS + " Agents");
@@ -240,7 +303,7 @@ public class main {
 
        // writer.close();
 
-}
+//}
 
 /*
     public class HybridPolicy implements Policy
@@ -272,7 +335,7 @@ public class main {
 
     //1000);
 
-    public static void printAVG( PrintWriter writerAVG, String output, double avgReward, long avgTime) throws FileNotFoundException, UnsupportedEncodingException {
+   /* public static void printAVG( PrintWriter writerAVG, String output, double avgReward, long avgTime) throws FileNotFoundException, UnsupportedEncodingException {
 
         // PrintWriter writer = new PrintWriter(output, "UTF-8");
         StringBuilder sb = new StringBuilder();
@@ -286,14 +349,14 @@ public class main {
         sb.append('\n');
         writerAVG.write(sb.toString());
         writerAVG.flush();
-    }
+    }*/
 
 
 
-    public static void printPolicyUCT( PrintWriter writerAll, Policy p, State initialState,List<State> allStates, String output, double totReward, long totalTime, int testNum ,int horizon, int numUCT, int numOfVisits) throws FileNotFoundException, UnsupportedEncodingException {
+  /* public static void printPolicyUCT( PrintWriter writerAll, Policy p, State initialState,List<State> allStates, String output, double totReward, long totalTime, int testNum ,int horizon, int numUCT, int numOfVisits) throws FileNotFoundException, UnsupportedEncodingException {
 
-        // public static void printPolicyUCT( PrintWriter writerAll, Policy p, State initialState, String output, double totReward, long totalTime, int testNum ,int horizon, int numUCT, int numOfVisits) throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter writer = new PrintWriter(output);
+       // public static void printPolicyUCT( PrintWriter writerAll, Policy p, State initialState, String output, double totReward, long totalTime, int testNum ,int horizon, int numUCT, int numOfVisits) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter(output  +".csv");
         StringBuilder sb = new StringBuilder();
         sb.append(NUM_OF_SENSORS);
         sb.append(',');
@@ -314,16 +377,27 @@ public class main {
         writerAll.write(sb.toString());
         writerAll.flush();
 
+       StringBuilder sbPol = new StringBuilder();
+        sbPol.append("State");
+        sbPol.append(',');
+        sbPol.append("action");
+        sbPol.append('\n');
+        writer.write(sbPol.toString());
+        writer.flush();
         for (State s : allStates) {
-            writer.println("State: " + s);
-            writer.println("Action: " + p.action(s));
-            writer.println();
+            sbPol = new StringBuilder();
+            sbPol.append(s);
+            sbPol.append(',');
+            sbPol.append(p.action(s));
+            sbPol.append('\n');
+            writer.write(sbPol.toString());
+            writer.flush();
         }
-        writer.println();
+       /* writer.println();
         writer.println("Total Reward: " + totReward);
         writer.println("runTime: " + totalTime + " miliseconds");//1000);*/
-        writer.flush();
-        writer.close();
+    //    writer.flush();
+    //    writer.close();
 
         /*writerAllVI.println();
         writerAllVI.println(NUM_OF_SENSORS + " sensors");
@@ -336,13 +410,13 @@ public class main {
 
        // writer.close();
 
-    }
+    //}
 
 
      /*Driver function to check for above function*/
 
 
-    private static void MultipleAgentsUCT(int nSensors, int nAgents, int testNum, int numUCT, int horizon) {
+   /* private static void MultipleAgentsUCT(int nSensors, int nAgents, int testNum, int numUCT, int horizon) {
         NUM_OF_AGENTS = nAgents;
         NUM_OF_SENSORS = nSensors;
         DataMulesDomain me = new DataMulesDomain();
@@ -352,16 +426,20 @@ public class main {
         State initialState = new GenericOOState(DataMulesState.createInitialState());
 
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
-        //List<State> allStates = StateReachability.getReachableStates(initialState,domain,hashingFactory);
+        List<State> allStates = StateReachability.getReachableStates(initialState,domain,hashingFactory);
 
         /*
         	public UCT(SADomain domain, double gamma, HashableStateFactory hashingFactory, int horizon, int nRollouts, int explorationBias){
 
          */
 
-       List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
-        long startTime = System.currentTimeMillis();
+      //List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
+       /* long startTime = System.currentTimeMillis();
         myUCT uct = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
+        Map<State,List<QValue>> lQ = null;
+       /* for(State st: allStates) {
+            lQ.put(st, uct.qValues(st));
+        }
 
         Policy p = uct.planFromState(initialState);
 
@@ -383,17 +461,16 @@ public class main {
        }
 
         try {
-           printPolicyUCT(writerAllUCT,p, initialState,allStates,OUTPUT_PATH+"policy/" + nSensors+ "," + nAgents + ","+ numUCT+"," +testNum + " ," +horizon + ".txt", totalReward,totalTime, testNum,horizon,numUCT,visited);
-           // printPolicyUCT(writerAllUCT,p, initialState, OUTPUT_PATH + nSensors + " S ," + nAgents + " Ag UCT"+ numUCT+"rolls" +testNum + " horizon: " +horizon + ".txt", totalReward,totalTime, testNum,horizon,numUCT);
+           printPolicyUCT(writerAllUCT,p, initialState,allStates,OUTPUT_PATH+"policy/" + nSensors+ "," + nAgents + ","+ numUCT+"," +testNum + " ," +horizon , totalReward,totalTime, testNum,horizon,numUCT,visited);
+          // printPolicyUCT(writerAllUCT,p, initialState, OUTPUT_PATH+ "policy/" + nSensors + " S ," + nAgents + " Ag UCT"+ numUCT+"rolls" +testNum + " horizon: " +horizon + ".txt", totalReward,totalTime, testNum,horizon,numUCT, visited);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        //System.out.println("Total Reward" + totalReward);
-        //System.out.println("UCT runTime: " + totalTime + " miliseconds");//1000);
 
-    }
+
+    }*/
 
 
 

@@ -35,6 +35,7 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
 
         double[] probs = calcProbArr(Math.min(canBeBroken.size(),MAX_BROKEN));
+       // double[] probs = calcProbArr(canBeBroken.size());
         int newNum = chooseSubSetSize(probs);
 
         Set<Integer> newBrokens = randomSubSet(newNum,canBeBroken);
@@ -42,7 +43,6 @@ public class simpleDataMuleStateModel implements FullStateModel {
         DataMulesState dms = new DataMulesState(getLocsAfter(currentState,actionsArr,((MuleSimpleAction) (action))), newLastRepair);
         return new GenericOOState(dms);
     }
-
 
 
     private int chooseSubSetSize(double[] probs) {
@@ -61,9 +61,8 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
 
         for(int i = 0; i <= PossibleBrokensSize; i++) {
-            sum += p(i,PossibleBrokensSize);
+            sum += p(i);
             result[i] = sum;
-
         }
         return result;
     }
@@ -105,11 +104,8 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
         Set<Integer> repaired = new HashSet<Integer>();
 
-        if(action.actionName() == "r, r")
-        {
-            System.out.println();
-        }
         String[] actionsArr = ((MuleSimpleAction)(action)).actions;
+
 
         for(int i = 0; i < actionsArr.length; i++)
         {
@@ -118,6 +114,9 @@ public class simpleDataMuleStateModel implements FullStateModel {
                 repaired.add(currentState.agentsLoc[i]);
             }
         }
+
+        if(currentState.timeFromLastRepair.equals(new int[]{-1, -1})&& currentState.agentsLoc.equals(new int[]{1, 1}))
+        System.out.println(" ");
 
         //find the potentially broken at the next time step
         canBeBroken.clear();
@@ -139,7 +138,7 @@ public class simpleDataMuleStateModel implements FullStateModel {
             //calculate the probability of getting there
            // int canBeNum  = MAX_BROKEN - currentState.getNumberOfBroken() + repaired.size();
             //int canBeNum  = canBeBroken.size() - currentState.getNumberOfBroken() + repaired.size();
-            double prob = calcProb(newBrokens.size(), canBeBroken.size());
+            double prob = calcProb(newBrokens.size());
 
             //add the known broken to the new broken set
             for(int i = 0; i < NUM_OF_SENSORS;  i++)
@@ -192,7 +191,43 @@ public class simpleDataMuleStateModel implements FullStateModel {
     }
 
 
-    private double calcProb(int xNewBrokens,int canBeSize) {
+       private double calcProb(int xNewBrokens) {
+        //int brokenSize = newBrokens.size();
+       // int canBeSize = canBeBroken.size() - currentState.getNumberOfBroken();
+        double p1;
+        double p2;
+        int cooseRes = choose(canBeBroken.size(),xNewBrokens);
+        p2 = 1/(double)cooseRes;
+
+        p1 = p(xNewBrokens);
+        double res = p1* p2;
+        return res;
+    }
+
+    private double p(int x){
+        int canBeNum = canBeBroken.size();
+        if(x == 0)
+        {
+            double sum = 0;
+
+            int minBroken = Math.min(MAX_BROKEN,canBeBroken.size());
+            for(int i = 1; i <= minBroken; i++)
+            {
+                sum += p(i);
+            }
+            return 1-sum;
+        }
+        else {
+            int ch = choose(canBeNum, x);
+            double powP = Math.pow(PROB_SENSOR_BREAK, x);
+            double pow1minP = Math.pow(1-PROB_SENSOR_BREAK,canBeNum - x);
+            double ans =  powP*pow1minP * ch;
+            return  ans ;
+        }
+    }
+
+
+   /* private double calcProb(int xNewBrokens,int canBeSize) {
         //int brokenSize = newBrokens.size();
        // int canBeSize = canBeBroken.size() - currentState.getNumberOfBroken();
         double p1;
@@ -200,30 +235,30 @@ public class simpleDataMuleStateModel implements FullStateModel {
         int cooseRes = choose(canBeSize,xNewBrokens);
         p2 = 1/(double)cooseRes;
 
-        p1 = p(xNewBrokens,canBeSize);
+        p1 = p(xNewBrokens,canBeSize, canBeBroken.size());
         double res = p1* p2;
         return res;
     }
 
-    private double p(int x, int canBeSize){
+    private double p(int x, int maxBrokenSize, int canBeBrokenNum){
         if(x == 0)
         {
             double sum = 0;
             for(int i = 1; i <= MAX_BROKEN; i++)
            // for(int i = 1; i <= canBeSize; i++)
             {
-                sum += p(i,canBeSize);
+                sum += p(i,maxBrokenSize);
             }
             return 1-sum;
         }
         else {
-            int ch = choose(canBeSize, x);
+            int ch = choose(maxBrokenSize, x);
             double powP = Math.pow(PROB_SENSOR_BREAK, x);
-            double pow1minP = Math.pow(1-PROB_SENSOR_BREAK,canBeSize - x);
+            double pow1minP = Math.pow(1-PROB_SENSOR_BREAK,maxBrokenSize - x);
             double ans =  powP*pow1minP * ch;
             return  ans ;
         }
-    }
+    }*/
 
     public int  choose(int n, int k) {
         if (k == 0)

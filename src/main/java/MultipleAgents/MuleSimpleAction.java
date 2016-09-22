@@ -26,4 +26,14 @@ public class MuleSimpleAction extends SimpleAction {
 
         }
     }
+
+    public String toString()
+    {
+        String s = "";
+        for(int i = 0; i < actions.length; i ++)
+        {
+            s += actions[i] + " ";
+        }
+        return s;
+    }
 }

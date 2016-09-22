@@ -14,8 +14,8 @@ public class avgClac {
     public static void main(String[] args) {
 
         //calcAVG(OUTPUT_PATH + "allSumUCTNew 5Horizon.csv",10);
-        //UCTcalcAVG(OUTPUT_PATH + "allSumUCTNewFrom20 - Copy.csv",5);
-        VIcalcAVG(OUTPUT_PATH + "allSumUCT16.9.csv",10);
+        UCTcalcAVG(OUTPUT_PATH + "allSumUCT.csv", 10);
+       // VIcalcAVG(OUTPUT_PATH + "allSumVI .csv",3);
     }
 
     public static void UCTcalcAVG(String input, double sumOf) {
@@ -24,7 +24,7 @@ public class avgClac {
         double rew = 0;
         long time = 0;
         try {
-            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "AvgUCT-p30-Horizon20.csv");
+            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "AvgUCT-tests.csv");
             StringBuilder sbUCT = new StringBuilder();
             sbUCT.append("number of Sensors");
             sbUCT.append(',');

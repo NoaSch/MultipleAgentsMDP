@@ -5,59 +5,15 @@
     <bookmark url="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6c777b4-5d90-4004-a1ac-56dae80e8c5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Downloads.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__colt_colt_1_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_vincentk_joptimizer_3_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_efficient_java_matrix_library_ejml_0_25.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__concurrent_concurrent_1_3_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__edu_brown_cs_burlap_burlap_3_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_14.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_jopt_simple_jopt_simple_4_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sourceforge_csparsej_csparsej_1_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jfree_jcommon_1_0_21.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jfree_jfreechart_1_0_17.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_13.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_3_04.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/maven1.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesDomain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesRewardFunction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesTerminalFunction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/MultipleAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/Permotations.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/myUCT.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/tests.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/VITutorial/VITutorial.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/basicPlanning/BasicBehavior.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/myProj/HelloGridWorld.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/myProj/PlotTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/DataMulesDomain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/DataMulesRewardFunction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/DataMulesState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/MoveToAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/RepairAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/TestMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/simpleDataMuleStateModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/tutorial1/EXGridState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/tutorial1/ExampleGridWorld.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/simpleDataMulePlan/simpleDataMuleStateModelTest.java" />
+    <list default="true" id="a6c777b4-5d90-4004-a1ac-56dae80e8c5a" name="Default" comment="1">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/maven1.iml" afterPath="$PROJECT_DIR$/maven1.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesState.java" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultipleAgents/MuleSimpleAction.java" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/MuleSimpleAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultipleAgents/avgClac.java" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/avgClac.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultipleAgents/main.java" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java" afterPath="$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java" />
     </list>
     <ignored path="maven1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,6 +39,9 @@
     <SUITE FILE_PATH="coverage/maven1$main.coverage" NAME="main Coverage Results" MODIFIED="1472371613509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>simpleDataMulePlan.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/MultipleAgentsMDP$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1474460677947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MultipleAgents.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/maven1$tests.coverage" NAME="tests Coverage Results" MODIFIED="1472477554143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CoverageViewManager">
@@ -102,102 +61,118 @@
       <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state relative-caret-position="1048">
+              <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataMulesDomain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesDomain.java">
+      <file leaf-file-name="avgClac.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/avgClac.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="1723">
+              <caret line="98" column="3" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ValueIteration.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java">
+      <file leaf-file-name="UCT.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3175">
-              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FactoredModel.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/singleagent/model/FactoredModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1550">
-              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DynamicProgramming.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/DynamicProgramming.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8100">
-              <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WrappedHashableState.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/statehashing/WrappedHashableState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="200">
+              <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
               <folding>
-                <element signature="e#464#465#0" expanded="true" />
+                <element signature="e#6041#6070#0" expanded="true" />
+                <element signature="e#7201#7209#0" expanded="true" />
+                <element signature="e#12081#12096#0" expanded="true" />
+                <element signature="e#13602#13603#0" expanded="true" />
+                <element signature="e#13670#13671#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StateReachability.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/auxiliary/StateReachability.java">
+      <file leaf-file-name="PolicyUtils.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/policy/PolicyUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="925">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="116">
+              <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GreedyQPolicy.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/policy/GreedyQPolicy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+              <folding>
+                <element signature="e#1459#1467#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MDPSolver.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/MDPSolver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1364">
+              <caret line="184" column="39" selection-start-line="184" selection-start-column="34" selection-end-line="184" selection-end-column="39" />
+              <folding>
+                <element signature="e#4132#4133#0" expanded="true" />
+                <element signature="e#4173#4174#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleHashableStateFactory.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/statehashing/simple/SimpleHashableStateFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="12" column="84" selection-start-line="12" selection-start-column="83" selection-end-line="12" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+            <state relative-caret-position="70">
+              <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simpleDataMuleStateModel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UCTActionNode.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCTActionNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="simpleDataMuleStateModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="229" column="13" selection-start-line="229" selection-start-column="13" selection-end-line="229" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GenericOOState.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/core/oo/state/generic/GenericOOState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2625">
-              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+            <state relative-caret-position="-275">
+              <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
               <folding>
-                <element signature="e#3627#3628#0" expanded="true" />
+                <element signature="e#549#558#0" expanded="true" />
+                <element signature="e#766#775#0" expanded="true" />
+                <element signature="e#2343#2352#0" expanded="true" />
+                <element signature="e#2460#2469#0" expanded="true" />
+                <element signature="e#3255#3276#0" expanded="true" />
+                <element signature="e#3431#3440#0" expanded="true" />
+                <element signature="e#9159#9168#0" expanded="true" />
+                <element signature="e#9553#9562#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -251,7 +226,6 @@
         <option value="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/DataMulesState.java" />
         <option value="$PROJECT_DIR$/src/main/java/basicPlanning/BasicBehavior.java" />
         <option value="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/TestMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/simpleDataMuleStateModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModelOLD.java" />
@@ -267,16 +241,17 @@
         <option value="$PROJECT_DIR$/src/main/java/withSet/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/myUCT.java" />
         <option value="$PROJECT_DIR$/src/main/java/avgCalc.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/avgClac.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/MultipleAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/MuleSimpleAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/Permotations.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesDomain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/simpleDataMulePlan/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesState.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/MultipleAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/MuleSimpleAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesRewardFunction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/avgClac.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java" />
       </list>
     </option>
   </component>
@@ -293,10 +268,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
+    <option name="x" value="2869" />
     <option name="y" value="-11" />
-    <option name="width" value="1942" />
-    <option name="height" value="1042" />
+    <option name="width" value="2062" />
+    <option name="height" value="1114" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -339,32 +314,31 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -374,11 +348,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -392,11 +366,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -414,11 +388,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maven1" />
+              <option name="myItemId" value="MultipleAgentsMDP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -441,6 +415,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -450,8 +425,8 @@
     <property name="project.structure.side.proportion" value="0.43371648" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="rewardSequence&#9;PSI&#9;JAVA://burlap.behavior.singleagent.Episode#rewardSequence" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CodeFrom18.9/maven1" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/noa/Desktop/dataMules/Code/MultipleAgentsMDP/src/main/java/MultipleAgents/Constants.java&#10;rewardSequence&#9;PSI&#9;JAVA://burlap.behavior.singleagent.Episode#rewardSequence" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
@@ -869,6 +844,21 @@
       <option name="presentableId" value="Default" />
       <updated>1471447441257</updated>
     </task>
+    <task id="LOCAL-00001" summary="1">
+      <created>1474360233852</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1474360233852</updated>
+    </task>
+    <task id="LOCAL-00002" summary="after fixing the model (sample and transition)">
+      <created>1474385296823</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1474385296823</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -893,36 +883,64 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
-    <editor active="true" />
+    <frame x="2869" y="-11" width="2062" height="1114" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19427148" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.35907128" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6239103" sideWeight="0.23326133" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.04109589" sideWeight="0.6301296" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17828572" sideWeight="0.6301296" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.20572917" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" x="762" y="72" width="1069" height="876" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275218" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32073435" sideWeight="0.7826087" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1637931" sideWeight="0.7826087" order="0" side_tool="false" content_ui="combo" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48685715" sideWeight="0.7845572" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.05142857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44351962" sideWeight="0.76673865" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29485714" sideWeight="0.76673865" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28671706" sideWeight="0.2173913" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45330012" sideWeight="0.35907128" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.20572917" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" x="762" y="72" width="1069" height="876" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.124533" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6239103" sideWeight="0.23326133" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5188571" sideWeight="0.76673865" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19427148" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25485715" sideWeight="0.35907128" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18514286" sideWeight="0.6301296" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.20572917" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" x="762" y="72" width="1069" height="876" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275218" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30121705" sideWeight="0.7826087" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48685715" sideWeight="0.7845572" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4822857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28671706" sideWeight="0.2173913" order="5" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -934,6 +952,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <MESSAGE value="after fixing the model (sample and transition)" />
+    <option name="LAST_COMMIT_MESSAGE" value="after fixing the model (sample and transition)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -969,158 +992,39 @@
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/MultipleAgents/tests.java</url>
-          <line>5</line>
+          <url>file://$PROJECT_DIR$/src/main/java/MultipleAgents/main.java</url>
+          <line>169</line>
           <properties />
-          <option name="timeStamp" value="286" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/HashMap.java</url>
-          <line>1483</line>
-          <properties />
-          <option name="timeStamp" value="338" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/HashMap.java</url>
-          <line>1491</line>
-          <properties />
-          <option name="timeStamp" value="339" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/basicPlanning/BasicBehavior.java</url>
-          <line>241</line>
-          <properties />
-          <option name="timeStamp" value="461" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/Episode.java</url>
-          <line>441</line>
-          <properties />
-          <option name="timeStamp" value="465" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/Episode.java</url>
-          <line>437</line>
-          <properties />
-          <option name="timeStamp" value="466" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/policy/PolicyUtils.java</url>
-          <line>211</line>
-          <properties />
-          <option name="timeStamp" value="641" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/Episode.java</url>
-          <line>328</line>
-          <properties />
-          <option name="timeStamp" value="692" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCTActionNode.java</url>
-          <line>122</line>
-          <properties />
-          <option name="timeStamp" value="697" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesDomain.java</url>
-          <line>89</line>
-          <properties />
-          <option name="timeStamp" value="702" />
+          <option name="timeStamp" value="1042" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/MultipleAgents/main.java</url>
-          <line>89</line>
+          <line>172</line>
           <properties />
-          <option name="timeStamp" value="841" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/auxiliary/StateReachability.java</url>
-          <line>51</line>
-          <properties />
-          <option name="timeStamp" value="843" />
+          <option name="timeStamp" value="1043" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/MultipleAgents/main.java</url>
-          <line>164</line>
+          <line>175</line>
           <properties />
-          <option name="timeStamp" value="844" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java</url>
-          <line>109</line>
-          <properties />
-          <option name="timeStamp" value="845" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java</url>
-          <line>110</line>
-          <properties />
-          <option name="timeStamp" value="847" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java</url>
-          <line>131</line>
-          <properties />
-          <option name="timeStamp" value="848" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/DynamicProgramming.java</url>
-          <line>189</line>
-          <properties />
-          <option name="timeStamp" value="849" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java</url>
-          <line>223</line>
-          <properties />
-          <option name="timeStamp" value="851" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java</url>
-          <line>144</line>
-          <properties />
-          <option name="timeStamp" value="852" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/DynamicProgramming.java</url>
-          <line>360</line>
-          <properties />
-          <option name="timeStamp" value="853" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java</url>
-          <line>136</line>
-          <properties />
-          <option name="timeStamp" value="856" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java</url>
-          <line>150</line>
-          <properties />
-          <option name="timeStamp" value="857" />
+          <option name="timeStamp" value="1044" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="859" />
+      <option name="time" value="1045" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="states" />
-        <watch expression="action" />
-        <watch expression="NUM_OF_AGENTS" />
+        <watch expression="probs" />
+        <watch expression="newNum" />
+        <watch expression="canBeBroken" />
+        <watch expression="newBrokens" />
+        <watch expression="rand" />
         <watch expression="state" />
-        <watch expression="repaired" />
-        <watch expression="canBeBroken" />
-        <watch expression="powSet" />
-        <watch expression="canBeBroken" />
-        <watch expression="copySet" />
-        <watch expression="randInt" />
-        <watch expression="randNum" />
-        <watch expression="newBrokens" />
-        <watch expression="newBrokens" />
+        <watch expression="action" />
+        <watch expression="s" />
       </configuration>
     </watches-manager>
   </component>
@@ -1129,91 +1033,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/statehashing/simple/IISimpleHashableState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/singleagent/SADomain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/statehashing/simple/SimpleHashableStateFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1300">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89800">
-          <caret line="3663" column="0" selection-start-line="3663" selection-start-column="0" selection-end-line="3663" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/lang/Double.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1026">
-          <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/avgCalc.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/lang/Integer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="614" column="0" selection-start-line="614" selection-start-column="0" selection-end-line="614" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/FileOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="269" column="0" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/FileInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/regex/Matcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="636" column="0" selection-start-line="636" selection-start-column="0" selection-end-line="636" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47425">
-          <caret line="1968" column="0" selection-start-line="1968" selection-start-column="0" selection-end-line="1968" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/regex/Pattern.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29025">
-          <caret line="1206" column="0" selection-start-line="1206" selection-start-column="0" selection-end-line="1206" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/ByteArrayOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4075">
-          <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/PrintWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3775">
@@ -1239,24 +1058,6 @@
             <element signature="e#8092#8093#0" expanded="false" />
             <element signature="e#9503#9504#0" expanded="false" />
             <element signature="e#9540#9541#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCTStateNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1300">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCTActionNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3550">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding>
-            <element signature="e#3424#3425#0" expanded="false" />
-            <element signature="e#3460#3461#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1299,20 +1100,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/MDPSolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/core/action/ActionUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="21" column="88" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/policy/2 Sensors ,2 Agents PolicyMultAgents test1.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1332,26 +1119,6 @@
         <state relative-caret-position="175">
           <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/avgClac.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2000">
-          <caret line="82" column="22" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesTerminalFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1377,10 +1144,150 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/policy/PolicyUtils.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/DynamicProgramming.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+        <state relative-caret-position="201">
+          <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="428" column="0" selection-start-line="428" selection-start-column="0" selection-end-line="428" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/simpleDataMulePlan/simpleDataMuleStateModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/simpleDataMulePlan/DataMulesRewardFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/simpleDataMulePlan/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-169">
+          <caret line="206" column="0" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
+          <folding>
+            <element signature="e#6838#6853#0" expanded="true" />
+            <element signature="e#6902#6917#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesDomain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/myUCT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#963#964#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/MuleSimpleAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/auxiliary/StateReachability.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1542">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/core/action/ActionUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#989#997#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/debugtools/DPrint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding>
+            <element signature="e#2363#2364#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/debugtools/RandomFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+          <folding>
+            <element signature="e#2458#2459#0" expanded="false" />
+            <element signature="e#2495#2496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/core/oo/state/OOStateUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding>
+            <element signature="e#3422#3452#0" expanded="false" />
+            <element signature="e#3548#3564#0" expanded="false" />
+            <element signature="e#4047#4055#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#1094#1095#0" expanded="false" />
+            <element signature="e#1128#1129#0" expanded="false" />
+            <element signature="e#1190#1191#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCTStateNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1393,152 +1300,204 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCT.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/FileInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="317" column="0" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+        <state relative-caret-position="438">
+          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/ArrayList.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/policy/EnumerablePolicy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15375">
-          <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
+        <state relative-caret-position="97">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/valuefunction/QValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesRewardFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/myUCT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/MuleSimpleAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="280">
+          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/MultipleAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1600">
-          <caret line="78" column="71" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="71" />
+        <state relative-caret-position="187">
+          <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/statehashing/simple/IISimpleHashableState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#976#977#0" expanded="false" />
-            <element signature="e#1012#1013#0" expanded="false" />
-            <element signature="e#1066#1067#0" expanded="false" />
-            <element signature="e#1100#1101#0" expanded="false" />
+            <element signature="e#615#616#0" expanded="false" />
+            <element signature="e#652#653#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesState.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesTerminalFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/DataMulesDomain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="101">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#369#370#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/statehashing/WrappedHashableState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
+        <state relative-caret-position="190">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="e#464#465#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/singleagent/model/FactoredModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding>
+            <element signature="e#2969#2970#0" expanded="false" />
+            <element signature="e#3004#3005#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/core/oo/state/generic/GenericOOState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2625">
+        <state relative-caret-position="101">
           <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
           <folding>
+            <element signature="e#3498#3499#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
             <element signature="e#3627#3628#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/auxiliary/StateReachability.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/VITutorial/VITutorial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="175">
+          <caret line="34" column="41" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/valueiteration/ValueIteration.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/statehashing/simple/SimpleHashableStateFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3175">
-          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="89">
+          <caret line="12" column="84" selection-start-line="12" selection-start-column="83" selection-end-line="12" selection-end-column="84" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/DynamicProgramming.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/MDPSolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8100">
-          <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="1364">
+          <caret line="184" column="39" selection-start-line="184" selection-start-column="34" selection-end-line="184" selection-end-column="39" />
+          <folding>
+            <element signature="e#4132#4133#0" expanded="true" />
+            <element signature="e#4173#4174#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/mdp/singleagent/model/FactoredModel.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCTActionNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1550">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state relative-caret-position="104">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/simpleDataMuleStateModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="229" column="13" selection-start-line="229" selection-start-column="13" selection-end-line="229" selection-end-column="13" />
+        <state relative-caret-position="-275">
+          <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
+          <folding>
+            <element signature="e#549#558#0" expanded="true" />
+            <element signature="e#766#775#0" expanded="true" />
+            <element signature="e#2343#2352#0" expanded="true" />
+            <element signature="e#2460#2469#0" expanded="true" />
+            <element signature="e#3255#3276#0" expanded="true" />
+            <element signature="e#3431#3440#0" expanded="true" />
+            <element signature="e#9159#9168#0" expanded="true" />
+            <element signature="e#9553#9562#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/policy/PolicyUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/policy/GreedyQPolicy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding>
+            <element signature="e#1459#1467#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/avgClac.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1723">
+          <caret line="98" column="3" selection-start-line="98" selection-start-column="3" selection-end-line="98" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/edu/brown/cs/burlap/burlap/3.0.0/burlap-3.0.0-sources.jar!/burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding>
+            <element signature="e#6041#6070#0" expanded="true" />
+            <element signature="e#7201#7209#0" expanded="true" />
+            <element signature="e#12081#12096#0" expanded="true" />
+            <element signature="e#13602#13603#0" expanded="true" />
+            <element signature="e#13670#13671#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1048">
+          <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MultipleAgents/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
           <folding />
         </state>
       </provider>
