@@ -3,7 +3,6 @@ package MultipleAgents;
 import burlap.behavior.policy.Policy;
 import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
-import burlap.behavior.singleagent.auxiliary.StateReachability;
 import burlap.behavior.singleagent.planning.Planner;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
 import burlap.mdp.core.oo.state.generic.GenericOOState;
@@ -85,31 +84,34 @@ public class main {
         writerAll.write(sb.toString());
         writerAll.flush();
 
-        for (int se = 1; se <= 3; se++)
+
+     /*   for (int se = 1; se <= 3; se++)
             for (int ag = 1; ag <= se; ag++){
                 runAlgorithm("vi",se, ag, 1, 0, 2);
                 for (int i = 1; i <= 5; i++) {
-                    runAlgorithm("uct",se, ag, i, 500, 2);
-                }}
-/*
+                    runAlgorithm("uct",se, ag, i, 2, 250);
+                }}*/
+
+
         int horizon =2;
-        for (int numUCT = 50; numUCT < 500; numUCT = numUCT + 100)
+        for (int numUCT = 1000; numUCT < 3000; numUCT = numUCT + 500) {
             for (int se = 1; se <= 4; se++)
                 for (int ag = 1; ag <= se; ag++)
                     for (int i = 1; i <= 10; i++) {
-                        runAlgorithm("uct",se, ag, i, numUCT, horizon);
+                        runAlgorithm("uct", se, ag, i, horizon, numUCT);
                     }
-            for (int se = 1; se <= 4; se++)
+        }
+        /*    for (int se = 1; se <= 4; se++)
                 for (int ag = 1; ag <= se; ag++)
-                    for (int i = 1; i <= 10; i++) {
-                        runAlgorithm("vi",se, ag, i, 0, horizon);
-                    }*/
+                   // for (int i = 1; i <= 10; i++) {
+                        runAlgorithm("vi",se, ag, 1, horizon, 0);*/
+                    }
 
 
         // MultipleAgentsVI(2, 2, 1);
 
 
-    }
+
 
 
 
@@ -161,7 +163,7 @@ public class main {
         State initialState = new GenericOOState(DataMulesState.createInitialState());
 
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
-        List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
+        //List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
 
         long startTime = System.currentTimeMillis();
 
@@ -200,7 +202,7 @@ public class main {
         try {
            //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
              writeResults(algorithm, numUCT, horizon, writerAll, totalReward, totalTimePlan,totalTimeTot, testNum);
-            writePolicy(OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
+           // writePolicy(OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

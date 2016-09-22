@@ -17,7 +17,7 @@ import static MultipleAgents.Constants.*;
  */
 public class simpleDataMuleStateModel implements FullStateModel {
 
-    Random ran = new Random();
+    Random ran = new Random(1);
     Set<Integer> canBeBroken = new HashSet<Integer>();
 
     public State sample(State state, Action action) {
@@ -46,7 +46,8 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
 
     private int chooseSubSetSize(double[] probs) {
-        double rand = Math.random();
+        //double rand = Math.random();
+        double rand = ran.nextDouble();
         //Return the proper cell
         for(int j = 0; j < probs.length; j++) {
             if (rand <= probs[j])

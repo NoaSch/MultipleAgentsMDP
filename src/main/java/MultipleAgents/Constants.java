@@ -11,7 +11,7 @@ public class Constants {
     public static int NUM_OF_SENSORS = 3;
     public static double PROB_SENSOR_BREAK = 0.3;
     public static double GUARANTEED_REMAIN_OK = 3;
-    public static int MAX_BROKEN = 2;
+    public static int MAX_BROKEN = 1;
 
 
     public static String OUTPUT_PATH = "output/";

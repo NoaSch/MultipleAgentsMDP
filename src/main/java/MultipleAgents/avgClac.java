@@ -14,7 +14,7 @@ public class avgClac {
     public static void main(String[] args) {
 
         //calcAVG(OUTPUT_PATH + "allSumUCTNew 5Horizon.csv",10);
-        UCTcalcAVG(OUTPUT_PATH + "allSumUCT.csv", 10);
+        UCTcalcAVG(OUTPUT_PATH + "results/allSum - Copy (4).csv", 10);
        // VIcalcAVG(OUTPUT_PATH + "allSumVI .csv",3);
     }
 
@@ -22,25 +22,36 @@ public class avgClac {
         String line = "";
         BufferedReader br = null;
         double rew = 0;
-        long time = 0;
+        long timeT = 0;
+        long timeP = 0;
         try {
-            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "AvgUCT-tests.csv");
-            StringBuilder sbUCT = new StringBuilder();
-            sbUCT.append("number of Sensors");
-            sbUCT.append(',');
-            sbUCT.append("number of Agents");
-            sbUCT.append(',');
-            sbUCT.append("horizon");
-            sbUCT.append(',');
-            sbUCT.append("number of rollouts");
-            sbUCT.append(',');
-            sbUCT.append("AVG reward");
-            sbUCT.append(',');
-            sbUCT.append("num of visits");
-            sbUCT.append(',');
-            sbUCT.append("AVGrunTime(ms)");
-            sbUCT.append('\n');
-            writer.write(sbUCT.toString());
+            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "results/Avg-tests500.csv");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Algorithm name");
+            sb.append(',');
+            sb.append("# Iterations");
+            sb.append(',');
+            sb.append("Horizon");
+            sb.append(',');
+            sb.append("Instance");
+            sb.append(',');
+            sb.append("AVG Accumulated reward ");
+            sb.append(',');
+            sb.append("# rollouts");
+            sb.append(',');
+            sb.append(" AVG Planning runtime");
+            sb.append(',');
+            sb.append("AVG total runtime");
+            sb.append(',');
+            sb.append("# Sensors");
+            sb.append(',');
+            sb.append("# Robots");
+            sb.append(',');
+            sb.append("p ");
+            sb.append(',');
+            sb.append("B (Max New Faults)");
+            sb.append('\n');
+            writer.write(sb.toString());
             writer.flush();
 
             br = new BufferedReader(new FileReader(input));
@@ -48,33 +59,45 @@ public class avgClac {
             while (line != null) {
                 String[] strArr = line.split(",");
                 rew = 0;
-                time = 0;
+                timeP = 0;
+                timeT = 0;
                 for (int i = 0; i < sumOf && line != null; i++) {
                     // use comma as separator
                     line = br.readLine();
                     if (line != null) {
                         strArr = line.split(",");
-                        rew += Float.parseFloat(strArr[5]);
-                        time += Integer.parseInt(strArr[7]);
+                        rew += Float.parseFloat(strArr[4]);
+                        timeP += Integer.parseInt(strArr[6]);
+                        timeT += Integer.parseInt(strArr[7]);
                     }
                 }
                 if (line != null) {
-                    sbUCT = new StringBuilder();
-                    sbUCT.append(strArr[0]);
-                    sbUCT.append(',');
-                    sbUCT.append(strArr[1]);
-                    sbUCT.append(',');
-                    sbUCT.append(strArr[2]);
-                    sbUCT.append(',');
-                    sbUCT.append(strArr[3]);
-                    sbUCT.append(',');
-                    sbUCT.append(rew / sumOf);
-                    sbUCT.append(',');
-                    sbUCT.append(strArr[6]);
-                    sbUCT.append(',');
-                    sbUCT.append(time / sumOf);
-                    sbUCT.append('\n');
-                    writer.write(sbUCT.toString());
+                    sb = new StringBuilder();
+                    sb.append(strArr[0]);
+                    sb.append(',');
+                    sb.append(strArr[1]);
+                    sb.append(',');
+                    sb.append(strArr[2]);
+                    sb.append(',');
+                    sb.append(strArr[3]);
+                    sb.append(',');
+                    sb.append(rew / sumOf);
+                    sb.append(',');
+                    sb.append(strArr[5]);
+                    sb.append(',');
+                    sb.append(timeP / sumOf);
+                    sb.append(',');
+                    sb.append(timeT / sumOf);
+                    sb.append(',');
+                    sb.append(strArr[8]);
+                    sb.append(',');
+                    sb.append(strArr[9]);
+                    sb.append(',');
+                    sb.append(strArr[10]);
+                    sb.append(',');
+                    sb.append(strArr[11]);
+                    sb.append('\n');
+                    writer.write(sb.toString());
                     writer.flush();
                 }
             }
