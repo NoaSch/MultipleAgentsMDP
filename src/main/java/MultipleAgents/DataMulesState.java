@@ -109,6 +109,27 @@ public class DataMulesState implements ObjectInstance, MutableState {
         return new DataMulesState(agentsLoc,timeFromLastRepair);
     }
 
+    public static DataMulesState createInitialState(int nSensors, int nAgents) {
+
+        //all sensors will work at beginning
+        //Set<Integer> brokenSensors = new HashSet<Integer>();
+        //brokenSensors.add(0);
+        Integer[] timeFromLastRepair = new Integer[nSensors];
+        for(int i = 0; i < timeFromLastRepair.length; i++) {
+            timeFromLastRepair[i] = (int) GUARANTEED_REMAIN_OK;
+        }
+        Integer[] agentsLoc = new Integer[nAgents];
+        //the agents are on each of the n first sensors
+        for(int i = 0; i < agentsLoc.length; i++) {
+            agentsLoc[i] = i;
+        }
+        //int agentLoc = 0;
+
+        return new DataMulesState(agentsLoc,timeFromLastRepair);
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

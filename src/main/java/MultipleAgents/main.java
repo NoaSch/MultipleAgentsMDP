@@ -84,9 +84,9 @@ public class main {
         sb.append('\n');
         writerAll.write(sb.toString());
         writerAll.flush();
-        runAlgorithm("vi",3,1,1,2,2);
-        runAlgorithm("vi",3,2,1,2,2);
-runAlgorithm("vi",3,3,1,2,2);
+  //      runAlgorithm("vi",3,1,1,2,2);
+  //      runAlgorithm("vi",3,2,1,2,2);
+//runAlgorithm("vi",3,3,1,2,2);
 
 
         //  for(int i = 0; i < 5; i ++) {
@@ -102,15 +102,15 @@ runAlgorithm("vi",3,3,1,2,2);
                 }}
 
 */
-    /*    int se = 3;
-        for (int horizon = 3; horizon <= 4; horizon++)
-            for (int numUCT = 4500; numUCT < 8000; numUCT = numUCT + 500) {
+       int se = 3;
+        int horizon=3;
+            for (int numUCT = 50; numUCT < 2200; numUCT = numUCT + 200) {
                 // for (int se = 1; se <= 3; se++)
                 for (int ag = 1; ag <= se; ag++)
                     for (int i = 1; i <= 10; i++) {
                         runAlgorithm("uct", se, ag, i, horizon, numUCT);
                     }
-            }*/
+            }
     }
         /*    for (int se = 1; se <= 4; se++)
                 for (int ag = 1; ag <= se; ag++)
