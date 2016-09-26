@@ -6,7 +6,7 @@ package MultipleAgents;
 public class Constants {
 
     //simulation parameters
-    public static int TOTAL_TIME_STEPS = 50;
+    public static int TOTAL_TIME_STEPS = 100;
     public static int NUM_OF_AGENTS = 3;
     public static int NUM_OF_SENSORS = 3;
     public static double PROB_SENSOR_BREAK = 0.3;
@@ -16,7 +16,7 @@ public class Constants {
 
     public static String OUTPUT_PATH = "output/";
     public static double DISCOUNT = 0.99;
-    public static double MOVING_COST = 0.1;
+    public static double MOVING_COST = 0.3;
     public static double FIXING_COST = 0;
 
   //  public static final String ACTION_STAY = "stay";

@@ -14,7 +14,7 @@ public class avgClac {
     public static void main(String[] args) {
 
         //calcAVG(OUTPUT_PATH + "allSumUCTNew 5Horizon.csv",10);
-        UCTcalcAVG(OUTPUT_PATH + "results/allSum - Copy (4).csv", 10);
+        UCTcalcAVG(OUTPUT_PATH + "results/allSumBig.csv", 10);
        // VIcalcAVG(OUTPUT_PATH + "allSumVI .csv",3);
     }
 
@@ -25,7 +25,7 @@ public class avgClac {
         long timeT = 0;
         long timeP = 0;
         try {
-            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "results/Avg-tests500.csv");
+            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "results/Avg-Big,3.csv");
             StringBuilder sb = new StringBuilder();
             sb.append("Algorithm name");
             sb.append(',');

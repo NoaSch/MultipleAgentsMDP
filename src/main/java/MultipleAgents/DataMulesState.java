@@ -137,7 +137,7 @@ public class DataMulesState implements ObjectInstance, MutableState {
                 agLocs = agLocs + " " + agentsLoc[i];
             }
             //String s =  "agentsLoc: {" + agLocs + "}, broken:" + brokenSensors.toString() + " , lastRepair: {" + lRepair + "}";
-            String s =  "agentsLoc: {" + agLocs + "}  lastRepair: {" + lRepair + "}";
+            String s =  "agentsLoc: " + agLocs + " , lastRepair: " + lRepair ;
             return s;
         }
     }

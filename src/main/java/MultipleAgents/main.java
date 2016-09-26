@@ -3,6 +3,7 @@ package MultipleAgents;
 import burlap.behavior.policy.Policy;
 import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
+import burlap.behavior.singleagent.auxiliary.StateReachability;
 import burlap.behavior.singleagent.planning.Planner;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
 import burlap.mdp.core.oo.state.generic.GenericOOState;
@@ -83,29 +84,39 @@ public class main {
         sb.append('\n');
         writerAll.write(sb.toString());
         writerAll.flush();
+        runAlgorithm("vi",3,1,1,2,2);
+        runAlgorithm("vi",3,2,1,2,2);
+runAlgorithm("vi",3,3,1,2,2);
 
 
-     /*   for (int se = 1; se <= 3; se++)
-            for (int ag = 1; ag <= se; ag++){
-                runAlgorithm("vi",se, ag, 1, 0, 2);
-                for (int i = 1; i <= 5; i++) {
-                    runAlgorithm("uct",se, ag, i, 2, 250);
-                }}*/
+        //  for(int i = 0; i < 5; i ++) {
+        //       runAlgorithm("uct", 2, 2, 1, 2, 2000);
+        //   }
 
 
-        int horizon =2;
-        for (int numUCT = 1000; numUCT < 3000; numUCT = numUCT + 500) {
-            for (int se = 1; se <= 4; se++)
+        //  for (int se = 1; se <= 3; se++)
+   /*    for(int numUCT = 3000; numUCT <= 5000; numUCT+= 500)
+            for (int ag = 1; ag <= 3; ag++){
+                for (int i = 1; i <= 10; i++) {
+                    runAlgorithm("uct",3, ag, i, 3, numUCT);
+                }}
+
+*/
+    /*    int se = 3;
+        for (int horizon = 3; horizon <= 4; horizon++)
+            for (int numUCT = 4500; numUCT < 8000; numUCT = numUCT + 500) {
+                // for (int se = 1; se <= 3; se++)
                 for (int ag = 1; ag <= se; ag++)
                     for (int i = 1; i <= 10; i++) {
                         runAlgorithm("uct", se, ag, i, horizon, numUCT);
                     }
-        }
+            }*/
+    }
         /*    for (int se = 1; se <= 4; se++)
                 for (int ag = 1; ag <= se; ag++)
                    // for (int i = 1; i <= 10; i++) {
                         runAlgorithm("vi",se, ag, 1, horizon, 0);*/
-                    }
+                    //}
 
 
         // MultipleAgentsVI(2, 2, 1);
@@ -163,13 +174,13 @@ public class main {
         State initialState = new GenericOOState(DataMulesState.createInitialState());
 
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
-        //List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
+        List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
 
         long startTime = System.currentTimeMillis();
 
         Planner planner = null;
         if(algorithm.equals("vi")) {
-             planner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 100);
+             planner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 10000);
         }
        else  if(algorithm.equals("uct")) {
             planner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
@@ -202,7 +213,12 @@ public class main {
         try {
            //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
              writeResults(algorithm, numUCT, horizon, writerAll, totalReward, totalTimePlan,totalTimeTot, testNum);
-           // writePolicy(OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
+            if(algorithm == "vi")
+            writePolicy((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
+            else
+                writePolicy(null,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
+          //  writePolicy33((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -212,6 +228,57 @@ public class main {
   //      System.out.println("Total Reward" + totalReward);
     //    System.out.println("VI runTime: " + totalTime + " miliseconds");///1000);
     }
+
+  //  private static void writePolicy33(ValueIteration vi,String output, Policy p, List<State> allStates) {
+      /*  try {
+            PrintWriter writer = new PrintWriter(output + ".csv");
+            StringBuilder sbPol = new StringBuilder();
+            sbPol.append("l0");
+            sbPol.append(',');
+            sbPol.append("l1");
+            sbPol.append(',');
+            sbPol.append("l2");
+            sbPol.append(',');
+            sbPol.append("s0");
+            sbPol.append(',');
+            sbPol.append("s1");
+            sbPol.append(',');
+            sbPol.append("s2");
+            sbPol.append(',');
+            sbPol.append("action");
+            sbPol.append(',');
+            sbPol.append("value");
+            sbPol.append('\n');
+            writer.write(sbPol.toString());
+            writer.flush();
+            for (DataMulesState : allStates) {
+                //DataMulesState dms= (DataMulesState)s;
+                sbPol = new StringBuilder();
+                sbPol.append(dms.agentsLoc[0]);
+                sbPol.append(',');
+                sbPol.append(dms.agentsLoc[1]);
+                sbPol.append(',');
+                sbPol.append(dms.agentsLoc[2]);
+                sbPol.append(',');
+                sbPol.append(dms.timeFromLastRepair[0]);
+                sbPol.append(',');
+                sbPol.append(dms.timeFromLastRepair[0]);
+                sbPol.append(',');
+                sbPol.append(dms.timeFromLastRepair[0]);
+                sbPol.append(',');
+                sbPol.append(p.action(s));
+                sbPol.append(',');
+                sbPol.append(vi.value(s));
+                sbPol.append('\n');
+                writer.write(sbPol.toString());
+                writer.flush();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+
 
     //public static void writeResults( PrintWriter writerAll, Policy p, State initialState, List<State> allStates, String output, double totReward, long totalTime, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
         public static void writeResults( String algorithm,int numOfUCT, int horizon, PrintWriter writerAll, double totReward, long totalTimePlan,long totalTimeTot, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
@@ -256,22 +323,34 @@ public class main {
 
     }
 
-    public static void writePolicy(String output, Policy p, List<State> allStates)
+    public static void writePolicy(ValueIteration vi, String output, Policy p, List<State> allStates)
     {
         try {
             PrintWriter writer = new PrintWriter(output + ".csv");
             StringBuilder sbPol = new StringBuilder();
-            sbPol.append("State");
+            sbPol.append("Locs");
+            sbPol.append(',');
+            sbPol.append("Sensors");
             sbPol.append(',');
             sbPol.append("action");
+            if(vi != null) {
+                sbPol.append(',');
+                sbPol.append("value");
+            }
             sbPol.append('\n');
+
             writer.write(sbPol.toString());
             writer.flush();
             for (State s : allStates) {
                 sbPol = new StringBuilder();
                 sbPol.append(s.toString());
                 sbPol.append(',');
+                sbPol.append(',');
                 sbPol.append(p.action(s));
+                if(vi != null) {
+                    sbPol.append(',');
+                    sbPol.append(vi.value(s));
+                }
                 sbPol.append('\n');
                 writer.write(sbPol.toString());
                 writer.flush();
