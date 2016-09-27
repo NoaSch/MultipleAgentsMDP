@@ -20,7 +20,7 @@ public class DataMulesDomain implements DomainGenerator {
     // Create terminal function (the function that tells us if Zwe are at a terminal state)
     private static DataMulesTerminalFunction tf = new DataMulesTerminalFunction();
     //
-    // Create the full domain
+    // Create the full domainNum
 
     public OOSADomain generateDomain() {
 
@@ -28,9 +28,9 @@ public class DataMulesDomain implements DomainGenerator {
 
         domain.addStateClass(CLASS_STATE, DataMulesState.class);
 
-        // String arr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
+        // String dmsArr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
         vec.clear();
-        //String arr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+1)+MAX_BROKEN+1];
+        //String dmsArr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+1)+MAX_BROKEN+1];
         String arr[] = new String[NUM_OF_AGENTS * (NUM_OF_SENSORS + 2)];
         int rIndex = 0;
         int idx = 0;
@@ -59,7 +59,7 @@ public class DataMulesDomain implements DomainGenerator {
 
         }
 
-        // OODomain.Helper.addPfsToDomain(domain, this.generatePfs());
+        // OODomain.Helper.addPfsToDomain(domainNum, this.generatePfs());
 
         simpleDataMuleStateModel smodel = new simpleDataMuleStateModel();
 
@@ -78,9 +78,9 @@ public class DataMulesDomain implements DomainGenerator {
 
         domain.addStateClass(CLASS_STATE, DataMulesState.class);
 
-        // String arr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
+        // String dmsArr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
         vec.clear();
-        //String arr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+1)+MAX_BROKEN+1];
+        //String dmsArr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+1)+MAX_BROKEN+1];
         String arr[] = new String[NUM_OF_AGENTS * (NUM_OF_SENSORS + 2)];
         int rIndex = 0;
         int idx = 0;
@@ -109,7 +109,7 @@ public class DataMulesDomain implements DomainGenerator {
 
         }
 
-        // OODomain.Helper.addPfsToDomain(domain, this.generatePfs());
+        // OODomain.Helper.addPfsToDomain(domainNum, this.generatePfs());
 
         simpleDataMuleStateModel smodel = new simpleDataMuleStateModel();
 

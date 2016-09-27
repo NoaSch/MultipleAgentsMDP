@@ -11,7 +11,7 @@ public class myUCT  extends UCT {
     /**
      * Initializes UCT
      *
-     * @param domain          the domain in which to plan
+     * @param domain          the domainNum in which to plan
      * @param gamma           the discount factor
      * @param hashingFactory  the state hashing factory
      * @param horizon         the planning horizon

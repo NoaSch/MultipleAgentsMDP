@@ -11,21 +11,21 @@ public class tests {
         for(int i =0; i < actions.length; i++)
         System.out.println(actions[i]);*/
      /*   vec.clear();
-        String arr[] = new String[NUM_OF_AGENTS * (NUM_OF_SENSORS + 2)];
+        String dmsArr[] = new String[NUM_OF_AGENTS * (NUM_OF_SENSORS + 2)];
         int idx = 0;
         for (int i = 0; i < NUM_OF_AGENTS; i++) {
-            arr[idx] = "Stay";
+            dmsArr[idx] = "Stay";
             idx++;
-            arr[idx] = "Repair";
+            dmsArr[idx] = "Repair";
             idx++;
             for (int k = 0; k < NUM_OF_SENSORS; k++) {
-                arr[idx] = "moveTo" + k;
+                dmsArr[idx] = "moveTo" + k;
                 idx++;
             }
         }
         int r = 2;
-        int n = arr.length;
-        printCombination(arr, n, r);
+        int n = dmsArr.length;
+        printCombination(dmsArr, n, r);
         ArrayList<String[]> arrAns = removeDuplicates(vec);
         for (int i = 0; i < arrAns.size(); i++) {
             String[] sArr = arrAns.get(i);
@@ -42,10 +42,10 @@ public class tests {
 
 
      /*  String s = "moveTo1, stay";
-        String [] arr = s.split(", ");
-       System.out.println(Arrays.toString(arr));
-        System.out.println(arr[0]);
-        System.out.println(arr[1]);*/
+        String [] dmsArr = s.split(", ");
+       System.out.println(Arrays.toString(dmsArr));
+        System.out.println(dmsArr[0]);
+        System.out.println(dmsArr[1]);*/
 
        // }
   //  }

@@ -100,8 +100,11 @@ public class simpleDataMuleStateModel implements FullStateModel {
     public List<StateTransitionProb> stateTransitions(State state, Action action) {
 
         List<StateTransitionProb> result = new ArrayList<StateTransitionProb>();
-
-        DataMulesState currentState = (DataMulesState) (((OOState) state).object(Constants.CLASS_STATE));
+        DataMulesState currentState;
+        if(state instanceof DataMulesState)
+            currentState = (DataMulesState) state;
+        else
+            currentState = (DataMulesState) (((OOState) state).object(Constants.CLASS_STATE));
 
         Set<Integer> repaired = new HashSet<Integer>();
 
@@ -142,7 +145,8 @@ public class simpleDataMuleStateModel implements FullStateModel {
             double prob = calcProb(newBrokens.size());
 
             //add the known broken to the new broken set
-            for(int i = 0; i < NUM_OF_SENSORS;  i++)
+            //for(int i = 0; i < NUM_OF_SENSORS;  i++)
+            for (int i = 0; i < currentState.timeFromLastRepair.length; i++)
             {
                 if(currentState.timeFromLastRepair[i] == -1 && !newBrokens.contains(i) && !repaired.contains(i))
                     newBrokens.add(i);
@@ -177,7 +181,8 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
     private Integer[] getLocsAfter(DataMulesState state, String[] actionsArr, MuleSimpleAction action) {
      //  Integer[] result = state.agentsLoc;
-        Integer[] result = new Integer[NUM_OF_AGENTS];
+      //  Integer[] result = new Integer[NUM_OF_AGENTS];
+        Integer[] result = new Integer[state.agentsLoc.length];
         for(int i = 0; i < actionsArr.length;i++)
         {
             if(!(actionsArr[i].equals(ACTION_REPAIR) ) && !(actionsArr[i].equals(ACTION_STAY)))
@@ -285,7 +290,7 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
     private Set<Integer> findWorking(Integer[] lastRepair) {
         Set<Integer> result = new HashSet<Integer>();
-        for (int i = 0; i < NUM_OF_SENSORS; i++)
+        for (int i = 0; i < lastRepair.length; i++)
             if (lastRepair[i] != -1)
                 result.add(i);
         return result;

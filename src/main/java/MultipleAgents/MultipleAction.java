@@ -48,8 +48,11 @@ public class MultipleAction implements ActionType {
 
 
     public List<Action> allApplicableActions(State s) {
-        DataMulesState currState = (DataMulesState) (((OOState) s).object(Constants.CLASS_STATE));
-
+        DataMulesState currState;
+        if(s instanceof DataMulesState)
+            currState = (DataMulesState) s;
+        else
+            currState= (DataMulesState) (((OOState) s).object(Constants.CLASS_STATE));
         //Boolean allGood = true;
         String[] actions = this.action.actions;
         for(int i = 0; i < actions.length; i++) {

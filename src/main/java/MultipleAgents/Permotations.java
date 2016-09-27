@@ -11,9 +11,9 @@ import java.util.Set;
 public class Permotations {
    //     static ArrayList<String[]> vec = new ArrayList<String[]>();
          static ArrayList<String> vec = new ArrayList<String>();
-        /* arr[] ---> Input Array
+        /* dmsArr[] ---> Input Array
         data[] ---> Temporary array to store current combination
-        start & end ---> Staring and Ending indexes in arr[]
+        start & end ---> Staring and Ending indexes in dmsArr[]
         index ---> Current index in data[]
         r ---> Size of a combination to be printed */
         static void combinationUtil(String arr[], String data[], int start,
@@ -48,7 +48,7 @@ public class Permotations {
         }
 
         // The main function that prints all combinations of size r
-        // in arr[] of size n. This function mainly uses combinationUtil()
+        // in dmsArr[] of size n. This function mainly uses combinationUtil()
         static void printCombination(String arr[], int n, int r)
         {
             // A temporary array to store all combination one by one
@@ -56,7 +56,7 @@ public class Permotations {
 
             // Print all combination using temprary array 'data[]'
             combinationUtil(arr, data, 0, n-1, 0, r);
-            //combinationUtil(arr, data, 0, n, 0, r);
+            //combinationUtil(dmsArr, data, 0, n, 0, r);
         }
 
     //public static void  removeDuplicates(ArrayList<String[]> arrList) {
@@ -108,10 +108,10 @@ public class Permotations {
 
         /*Driver function to check for above function*/
         /*public static void main (String[] args) {
-        String arr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
+        String dmsArr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
         int r = 3;
-        int n = arr.length;
-        printCombination(arr, n, r);
+        int n = dmsArr.length;
+        printCombination(dmsArr, n, r);
             ArrayList<String[]> vecAns = removeDuplicates(vec);
             for(int i = 0; i < vecAns.size(); i++) {
                 String[] sArr = vecAns.get(i);

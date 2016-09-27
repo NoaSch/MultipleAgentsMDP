@@ -84,7 +84,13 @@ public class main {
         sb.append('\n');
         writerAll.write(sb.toString());
         writerAll.flush();
-  //      runAlgorithm("vi",3,1,1,2,2);
+        runAlgorithm("hybrid",2,2,1,2,2);
+        runAlgorithm("vi",2,2,1,2,2);
+        runAlgorithm("hybrid",3,3,1,2,2);
+        runAlgorithm("vi",3,3,1,2,2);
+        runAlgorithm("hybrid",4,4,1,2,2);
+        runAlgorithm("vi",4,4,1,2,2);
+
   //      runAlgorithm("vi",3,2,1,2,2);
 //runAlgorithm("vi",3,3,1,2,2);
 
@@ -102,7 +108,7 @@ public class main {
                 }}
 
 */
-       int se = 3;
+     /*  int se = 3;
         int horizon=3;
             for (int numUCT = 50; numUCT < 2200; numUCT = numUCT + 200) {
                 // for (int se = 1; se <= 3; se++)
@@ -110,7 +116,7 @@ public class main {
                     for (int i = 1; i <= 10; i++) {
                         runAlgorithm("uct", se, ag, i, horizon, numUCT);
                     }
-            }
+            }*/
     }
         /*    for (int se = 1; se <= 4; se++)
                 for (int ag = 1; ag <= se; ag++)
@@ -165,7 +171,7 @@ public class main {
 
     private static void runAlgorithm(String algorithm, int nSensors, int nAgents, int testNum, int horizon, int numUCT) {
 
-        NUM_OF_AGENTS = nAgents;
+       NUM_OF_AGENTS = nAgents;
         NUM_OF_SENSORS = nSensors;
         DataMulesDomain me = new DataMulesDomain();
         OOSADomain domain = me.generateDomain();
@@ -185,12 +191,28 @@ public class main {
        else  if(algorithm.equals("uct")) {
             planner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
         }
+       else  if(algorithm.equals("hybrid")) {
+           Planner innerPlanner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 10000);
+            planner = new HybridPlanner(innerPlanner);
+
+        }
 
         Policy p = planner.planFromState(initialState);
         long endTimePlan = System.currentTimeMillis();
         long totalTimePlan = endTimePlan - startTime;
 
-
+        try {
+            PrintWriter pw = new PrintWriter(OUTPUT_PATH+"tests/policyTest.txt");
+            for (State s : allStates) {
+StringBuilder sb = new StringBuilder();
+                sb.append(s.toString());
+                sb.append(p.action(s));
+                pw.write(sb.toString());
+                pw.flush();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
         Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
@@ -200,19 +222,19 @@ public class main {
         long totalTimeTot = endTimeTot - startTime;
 
 
-       // oPolicyUtils.rollout(p, initialState, domain.getModel(),TOTAL_TIME_STEPS).write(OUTPUT_PATH + "viMult");
+       // oPolicyUtils.rollout(p, initialState, domainNum.getModel(),TOTAL_TIME_STEPS).write(OUTPUT_PATH + "viMult");
 
 
         double totalReward = 0;
         List<Double> rewardList = ep.rewardSequence;
-        // List<Double> rewardList =  PolicyUtils.rollout(p, initialState, domain.getModel(),TOTAL_TIME_STEPS).rewardSequence;
+        // List<Double> rewardList =  PolicyUtils.rollout(p, initialState, domainNum.getModel(),TOTAL_TIME_STEPS).rewardSequence;
         for (double d : rewardList) {
             totalReward += d;
         }
 
         try {
            //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
-             writeResults(algorithm, numUCT, horizon, writerAll, totalReward, totalTimePlan,totalTimeTot, testNum);
+             writeResults(algorithm,nSensors,nAgents, numUCT, horizon, writerAll, totalReward, totalTimePlan,totalTimeTot, testNum);
             if(algorithm == "vi")
             writePolicy((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
             else
@@ -281,7 +303,7 @@ public class main {
 
 
     //public static void writeResults( PrintWriter writerAll, Policy p, State initialState, List<State> allStates, String output, double totReward, long totalTime, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
-        public static void writeResults( String algorithm,int numOfUCT, int horizon, PrintWriter writerAll, double totReward, long totalTimePlan,long totalTimeTot, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
+        public static void writeResults(String algorithm, int nSensors, int nAgents, int numOfUCT, int horizon, PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
 
         //PrintWriter writer = new PrintWriter(output + ".csv");
         StringBuilder sb = new StringBuilder();
@@ -293,7 +315,8 @@ public class main {
                 sb.append(horizon);
                 sb.append(',');
             }
-            else if(algorithm.equals("vi"))
+          //  else if(algorithm.equals("vi"))
+            else
             {
                 sb.append("N/A");
                 sb.append(',');
@@ -310,9 +333,9 @@ public class main {
             sb.append(',');
             sb.append(totalTimeTot);
             sb.append(',');
-            sb.append(NUM_OF_SENSORS);
+            sb.append(nSensors);
             sb.append(',');
-            sb.append(NUM_OF_AGENTS);
+            sb.append(nAgents);
             sb.append(',');
             sb.append(PROB_SENSOR_BREAK);
             sb.append(',');
@@ -501,22 +524,22 @@ public class main {
         NUM_OF_AGENTS = nAgents;
         NUM_OF_SENSORS = nSensors;
         DataMulesDomain me = new DataMulesDomain();
-        OOSADomain domain = me.generateDomain();
+        OOSADomain domainNum = me.generateDomain();
 
         // Create the initial state
         State initialState = new GenericOOState(DataMulesState.createInitialState());
 
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
-        List<State> allStates = StateReachability.getReachableStates(initialState,domain,hashingFactory);
+        List<State> allStates = StateReachability.getReachableStates(initialState,domainNum,hashingFactory);
 
         /*
-        	public UCT(SADomain domain, double gamma, HashableStateFactory hashingFactory, int horizon, int nRollouts, int explorationBias){
+        	public UCT(SADomain domainNum, double gamma, HashableStateFactory hashingFactory, int horizon, int nRollouts, int explorationBias){
 
          */
 
-      //List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
+      //List<State> allStates = StateReachability.getReachableStates(initialState, domainNum, hashingFactory);
        /* long startTime = System.currentTimeMillis();
-        myUCT uct = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
+        myUCT uct = new myUCT(domainNum, DISCOUNT, hashingFactory, horizon, numUCT, 2);
         Map<State,List<QValue>> lQ = null;
        /* for(State st: allStates) {
             lQ.put(st, uct.qValues(st));
@@ -530,13 +553,13 @@ public class main {
         long totalTime = endTime - startTime;
         int visited = uct.getNumOfVisited();
         System.out.println("visited: " + visited);
-         //Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel());
-        Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
+         //Episode ep = PolicyUtils.rollout(p, initialState, domainNum.getModel());
+        Episode ep = PolicyUtils.rollout(p, initialState, domainNum.getModel(), TOTAL_TIME_STEPS);
        // ep.write(OUTPUT_PATH + "policy/1");
         ep.write(OUTPUT_PATH + "episodes/"+ nSensors+ " Sensors ," + nAgents + " Agents test " +testNum +  ","+ +numUCT+" Rolls "+horizon + "hor");
         double totalReward = 0;
         List<Double> rewardList = ep.rewardSequence;
-         //List<Double> rewardList =  PolicyUtils.rollout(p, initialState, domain.getModel(),TOTAL_TIME_STEPS).rewardSequence;
+         //List<Double> rewardList =  PolicyUtils.rollout(p, initialState, domainNum.getModel(),TOTAL_TIME_STEPS).rewardSequence;
        for (double d : rewardList) {
            totalReward += d;
        }
