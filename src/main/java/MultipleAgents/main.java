@@ -84,12 +84,23 @@ public class main {
         sb.append('\n');
         writerAll.write(sb.toString());
         writerAll.flush();
-        runAlgorithm("hybrid",2,2,1,2,2);
-        runAlgorithm("vi",2,2,1,2,2);
-        runAlgorithm("hybrid",3,3,1,2,2);
-        runAlgorithm("vi",3,3,1,2,2);
-        runAlgorithm("hybrid",4,4,1,2,2);
-        runAlgorithm("vi",4,4,1,2,2);
+       // runAlgorithm("hybridUct",2,2,1,2,2000);
+       // runAlgorithm("uct",2,2,1,2,2000);
+       /* runAlgorithm("vi",2,1,1,2,2);
+        runAlgorithm("hybridVI",2,1,1,2,2);
+        runAlgorithm("uct",2,1,1,2,2000);
+        runAlgorithm("hybridUct",2,1,1,2,2000);
+        runAlgorithm("vi",4,2,1,2,2);
+        runAlgorithm("hybridVI",4,2,1,2,2);
+        runAlgorithm("uct",4,2,1,2,2000);
+        runAlgorithm("hybridUct",4,2,1,2,2000);
+        */
+
+
+        runAlgorithm("hybridVI",4,2,1,2,2);
+        runAlgorithm("vi",4,2,1,2,2);
+        runAlgorithm("hybridUct",4,2,1,2,2000);
+        runAlgorithm("uct",4,2,1,2,2000);
 
   //      runAlgorithm("vi",3,2,1,2,2);
 //runAlgorithm("vi",3,3,1,2,2);
@@ -191,7 +202,11 @@ public class main {
        else  if(algorithm.equals("uct")) {
             planner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
         }
-       else  if(algorithm.equals("hybrid")) {
+        else  if(algorithm.equals("hybridUct")) {
+            Planner innerPlanner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
+            planner = new HybridPlanner(innerPlanner);
+        }
+       else  if(algorithm.equals("hybridVI")) {
            Planner innerPlanner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 10000);
             planner = new HybridPlanner(innerPlanner);
 
@@ -235,7 +250,7 @@ StringBuilder sb = new StringBuilder();
         try {
            //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
              writeResults(algorithm,nSensors,nAgents, numUCT, horizon, writerAll, totalReward, totalTimePlan,totalTimeTot, testNum);
-            if(algorithm == "vi")
+            if(algorithm == "")
             writePolicy((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
             else
                 writePolicy(null,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
@@ -309,7 +324,7 @@ StringBuilder sb = new StringBuilder();
         StringBuilder sb = new StringBuilder();
             sb.append(algorithm);
             sb.append(',');
-            if(algorithm.equals("uct")) {
+            if(algorithm.equals("uct")||algorithm.equals("hybridUct") ) {
                 sb.append(numOfUCT);
                 sb.append(',');
                 sb.append(horizon);

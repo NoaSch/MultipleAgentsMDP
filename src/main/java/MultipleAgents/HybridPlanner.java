@@ -23,20 +23,15 @@ import static MultipleAgents.DataMulesState.createInitialState;
 public class HybridPlanner extends MDPSolver implements Planner {
     Planner plannerOriginal;
     Planner planner;
-   /* Map<domainIntPair, Integer> sensorsTosDom;
-    Map<domainIntPair,Integer> agentsTosDom;*/
+
    BiMap< Integer,domainIntPair> sensorsTosDom;
     BiMap< Integer,domainIntPair> agentsTosDom;
     BiMap<domainIntPair, Integer> inverseAgents;
     BiMap<domainIntPair, Integer> inversSensors;
-    //DataMulesState[] dmsArr;
-    int numOfDmains = NUM_OF_AGENTS;
+    int numOfDmains;
     int origSensorsNum = NUM_OF_SENSORS;
     int origAgentsNum = NUM_OF_AGENTS;
-
-
     Policy[] policyArr;
-   // Map<OOSADomain, Policy> plicyMap;
 
 
 
@@ -85,8 +80,12 @@ public class HybridPlanner extends MDPSolver implements Planner {
     }
 
 
-    public Policy planFromState(State initialState) {
-
+    public Policy planFromState(State initialState)
+    {
+       return planFromState(initialState, 2);
+    }
+    public Policy planFromState(State initialState, int nOfDomains) {
+        numOfDmains = nOfDomains;
         //partition the domainNum;
         //Map<Integer, Map<Domain,Integer>> sensorsTosDom;
         //Domain d = plannerOriginal.getDomain();
@@ -98,7 +97,6 @@ public class HybridPlanner extends MDPSolver implements Planner {
         //dmsArr = new DataMulesState[numOfDmains];
 
 
-        int domainCouner = 0;
 
         OOSADomain[] domains = new OOSADomain[numOfDmains];
         policyArr = new Policy[numOfDmains];
@@ -113,7 +111,36 @@ public class HybridPlanner extends MDPSolver implements Planner {
             policyArr[i] = pol;
         }
         int sNum =0;
-       while (sNum != origSensorsNum)
+
+        while (sNum != origSensorsNum)
+        {
+            for(int newNum = 0; newNum < numOfSens; newNum++)
+            {
+                for(int d = 0; d < numOfDmains; d++)
+                {
+                    domainIntPair dmp = new domainIntPair(d, newNum);
+                    sensorsTosDom.put(sNum, dmp);
+                    sNum++;
+                }
+            }
+        }
+
+        int agNum =0;
+        while (agNum != origAgentsNum)
+        {
+            for(int newNum = 0; newNum < numOfAg; newNum++)
+            {
+                for(int d = 0; d < numOfDmains; d++)
+                {
+                    domainIntPair dmp = new domainIntPair(d, newNum);
+                    agentsTosDom.put(agNum, dmp);
+                    agNum++;
+                }
+            }
+        }
+
+
+     /*  while (sNum != origSensorsNum)
         {
             for(int d = 0; d < numOfDmains; d++)
             {
@@ -137,10 +164,10 @@ public class HybridPlanner extends MDPSolver implements Planner {
                     agNum++;
                 }
             }
-        }
+        }*/
 
         inverseAgents = agentsTosDom.inverse();
-       sensorsTosDom.inverse();
+       inversSensors = sensorsTosDom.inverse();
 
         return new Policy() {
             public Action action(State s) {
@@ -156,37 +183,6 @@ public class HybridPlanner extends MDPSolver implements Planner {
             }
         };
     }
-
-       /*  DataMulesState dmState = (DataMulesState) (((OOState) s).object(Constants.CLASS_STATE));
-         ///createSmallerState
-         Integer[][] lastRepair = new Integer[numOfDmains][2]; //////change
-         Integer[][] agentLocs = new Integer[numOfDmains][2];//////change
-         MuleSimpleAction[] actionsSmaller = new  MuleSimpleAction[numOfDmains];
-
-
-         int domainNum;
-         //set agentLocs
-         for(int i = 0; i < dmState.agentsLoc.length; i++)
-         {
-             domainNum =  agentsTosDom.get(i).domainNum;
-             ////check it
-             agentLocs[domainNum][agentsTosDom.get(i).numVal] = sensorsTosDom.get(dmState.agentsLoc[i]).numVal ;
-         }
-         for(int i = 0; i < dmState.timeFromLastRepair.length; i++)
-         {
-             //check if it the same domain like up
-             domainNum =  sensorsTosDom.get(i).domainNum;
-             lastRepair[domainNum][sensorsTosDom.get(i).numVal] = agentsTosDom.get(dmState.timeFromLastRepair[i]).numVal ;
-         }
-         String[] actionsFinal = new String[dmState.agentsLoc.length];
-         domainIntPair dPair = null;
-         BiMap<domainIntPair, Integer> inverseAgents = agentsTosDom.inverse();
-         BiMap<domainIntPair, Integer> inversSensors = sensorsTosDom.inverse();
-         //creathe the states of each small domain
-         for(int i = 0; i < numOfDmains; i++) {
-
-             dmsArr[i] = new DataMulesState(agentLocs[i], lastRepair[i]);
-         }*/
        public Action actionHybrid(State s) {
          MuleSimpleAction[] actionsSmaller = new  MuleSimpleAction[numOfDmains];
            DataMulesState dmState = (DataMulesState) (((OOState) s).object(Constants.CLASS_STATE));
@@ -200,27 +196,30 @@ public class HybridPlanner extends MDPSolver implements Planner {
            String[] actionsFinal = new String[dmState.agentsLoc.length];
 
          domainIntPair dPair = null;
-         for(int i = 0; i < numOfDmains; i++) {
-             actionsSmaller[i] = new MuleSimpleAction(policyArr[i].action(dmsArr[i]).actionName());
+         for(int d = 0; d < numOfDmains; d++) {
+             Action a = policyArr[d].action(new GenericOOState(dmsArr[d]));;
+             actionsSmaller[d] = new MuleSimpleAction(a.actionName());
              //if the action is stay or repair
 
-             for(int j = 0; j <  actionsSmaller[i].actions.length; j++)
+             for(int ac = 0; ac <  actionsSmaller[d].actions.length; ac++)
              {
                 //if the action is repair of stay no need to translate sensor number
-                 if (actionsSmaller[i].actions[j].equals(ACTION_REPAIR) || actionsSmaller[i].actions[j].equals(ACTION_STAY)) {
-                     dPair = new domainIntPair(i, j);
+                 if (actionsSmaller[d].actions[ac].equals(ACTION_REPAIR) || actionsSmaller[d].actions[ac].equals(ACTION_STAY)) {
+                     dPair = new domainIntPair(d, ac);
                      int tstNum =inverseAgents.get(dPair);
 
-                     actionsFinal[tstNum] = actionsSmaller[i].actions[j];
+                     actionsFinal[tstNum] = actionsSmaller[d].actions[ac];
                  }
                  //action is moving
                  else
                  {
                       //j is the small agent num
-                     int dest = actionsSmaller[i].actionDestinations[j];
-                     dPair = new domainIntPair(i, dest);
+                     int dest = actionsSmaller[d].actionDestinations[ac];
+                     dPair = new domainIntPair(d, dest);
+                     domainIntPair domAg = new domainIntPair(d,ac);
                      int finalDest = inversSensors.get(dPair);
-                     actionsFinal[inverseAgents.get(j)]= "" +finalDest;
+                     int orgAg =inverseAgents.get(domAg);
+                     actionsFinal[orgAg]= "" +finalDest;
                  }
 
              }

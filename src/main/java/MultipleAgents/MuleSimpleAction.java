@@ -21,7 +21,7 @@ public class MuleSimpleAction extends SimpleAction {
         {
             if(!(actions[i].equals(ACTION_REPAIR) ) && !(actions[i].equals(ACTION_STAY))) {
                 actionDestinations[i] = Integer.parseInt(actions[i]);
-                System.out.println(actions[i]);
+                //System.out.println(actions[i]);
             }
             else
                 actionDestinations[i] = -1;
