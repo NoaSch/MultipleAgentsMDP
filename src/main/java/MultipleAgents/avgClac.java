@@ -14,7 +14,7 @@ public class avgClac {
     public static void main(String[] args) {
 
         //calcAVG(OUTPUT_PATH + "allSumUCTNew 5Horizon.csv",10);
-        UCTcalcAVG(OUTPUT_PATH + "results/allSumBig.csv", 10);
+        UCTcalcAVG(OUTPUT_PATH + "results/allSum.csv", 10);
        // VIcalcAVG(OUTPUT_PATH + "allSumVI .csv",3);
     }
 
@@ -24,8 +24,9 @@ public class avgClac {
         double rew = 0;
         long timeT = 0;
         long timeP = 0;
+        int totNotFixed = 0;
         try {
-            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "results/Avg-Big,3.csv");
+            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "results/avg9.10.csv");
             StringBuilder sb = new StringBuilder();
             sb.append("Algorithm name");
             sb.append(',');
@@ -50,6 +51,8 @@ public class avgClac {
             sb.append("p ");
             sb.append(',');
             sb.append("B (Max New Faults)");
+            sb.append(',');
+            sb.append("AVG notFixed");
             sb.append('\n');
             writer.write(sb.toString());
             writer.flush();
@@ -61,6 +64,7 @@ public class avgClac {
                 rew = 0;
                 timeP = 0;
                 timeT = 0;
+                totNotFixed = 0;
                 for (int i = 0; i < sumOf && line != null; i++) {
                     // use comma as separator
                     line = br.readLine();
@@ -69,6 +73,7 @@ public class avgClac {
                         rew += Float.parseFloat(strArr[4]);
                         timeP += Integer.parseInt(strArr[6]);
                         timeT += Integer.parseInt(strArr[7]);
+                        totNotFixed += Integer.parseInt(strArr[12]);
                     }
                 }
                 if (line != null) {
@@ -96,6 +101,8 @@ public class avgClac {
                     sb.append(strArr[10]);
                     sb.append(',');
                     sb.append(strArr[11]);
+                    sb.append(',');
+                    sb.append(totNotFixed/ sumOf);
                     sb.append('\n');
                     writer.write(sb.toString());
                     writer.flush();
@@ -134,6 +141,8 @@ public class avgClac {
             sbVI.append("AVG reward");
             sbVI.append(',');
             sbVI.append("AVGrunTime(ms)");
+            sbVI.append(',');
+            sbVI.append("AVGNotFixed");
             sbVI.append('\n');
             writer.write(sbVI.toString());
             writer.flush();

@@ -71,8 +71,8 @@ public class DataMulesDomain implements DomainGenerator {
 
     public static OOSADomain generateDomain(int numOfSensors, int numOfAgents) {
 
-        NUM_OF_SENSORS = numOfSensors;
-        NUM_OF_AGENTS = numOfAgents;
+      //  NUM_OF_SENSORS = numOfSensors;
+      //  NUM_OF_AGENTS = numOfAgents;
 
         OOSADomain domain = new OOSADomain();
 
@@ -81,22 +81,22 @@ public class DataMulesDomain implements DomainGenerator {
         // String dmsArr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
         vec.clear();
         //String dmsArr[] = new String[NUM_OF_AGENTS*(NUM_OF_SENSORS+1)+MAX_BROKEN+1];
-        String arr[] = new String[NUM_OF_AGENTS * (NUM_OF_SENSORS + 2)];
+        String arr[] = new String[numOfAgents * (numOfSensors + 2)];
         int rIndex = 0;
         int idx = 0;
-        for (int i = 0; i < NUM_OF_AGENTS; i++) {
+        for (int i = 0; i < numOfAgents; i++) {
             arr[idx] = ACTION_STAY;
             idx++;
             arr[idx] = ACTION_REPAIR;
             idx++;
-            for (int k = 0; k < NUM_OF_SENSORS; k++) {
+            for (int k = 0; k < numOfSensors; k++) {
                 arr[idx] = "" + k;
                 idx++;
             }
 
         }
 
-        int r = NUM_OF_AGENTS;
+        int r = numOfAgents;
         int n = arr.length;
         printCombination(arr, n, r);
         removeDuplicates(vec);

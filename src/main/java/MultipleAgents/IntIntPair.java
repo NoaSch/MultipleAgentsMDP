@@ -3,12 +3,12 @@ package MultipleAgents;
 /**
  * Created by noa on 25-Sep-16.
  */
-public class domainIntPair {
+public class IntIntPair {
     //Domain domainNum;
     int domainNum;
     int numVal;
 
-   /* public domainIntPair(Domain dom, int n)
+   /* public IntIntPair(Domain dom, int n)
     {
         domainNum = dom;
         numVal = n;
@@ -19,7 +19,7 @@ public class domainIntPair {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        domainIntPair other = (domainIntPair) o;
+        IntIntPair other = (IntIntPair) o;
         if(numVal != other.numVal)
             return false;
         if(domainNum.equals(other.domainNum))
@@ -27,7 +27,7 @@ public class domainIntPair {
         return false;
     }*/
 
-     public domainIntPair(int dom, int n)
+     public IntIntPair(int dom, int n)
     {
         domainNum = dom;
         numVal = n;
@@ -38,7 +38,7 @@ public class domainIntPair {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        domainIntPair other = (domainIntPair) o;
+        IntIntPair other = (IntIntPair) o;
         return (domainNum == other.domainNum && numVal ==other.numVal);
     }
 
