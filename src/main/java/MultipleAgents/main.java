@@ -5,6 +5,7 @@ import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.auxiliary.StateReachability;
 import burlap.behavior.singleagent.planning.Planner;
+import burlap.behavior.singleagent.planning.stochastic.rtdp.RTDP;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
 import burlap.mdp.core.oo.state.OOState;
 import burlap.mdp.core.oo.state.generic.GenericOOState;
@@ -65,6 +66,10 @@ public class main {
         sb.append(',');
         sb.append("Horizon");
         sb.append(',');
+        sb.append("MaxDelta");
+        sb.append(',');
+        sb.append("maxDepth");
+        sb.append(',');
         sb.append("Instance");
         sb.append(',');
         sb.append("Accumulated reward ");
@@ -88,116 +93,43 @@ public class main {
         writerAll.write(sb.toString());
         writerAll.flush();
 
-
-            for (int se = 2; se <= 4; se++)
-                for (int ag = 1; ag <= se; ag++)
-           //int se = 5;
-                  // int ag = 3;
+        runAlgorithm(1, "vi", 7, 1, 2, 0, 0.001, 100, 5);
+        for(int se = 8; se <=20;se++)
+        {
+            runAlgorithm(1, "vi", se, 1, 2, 0, 0.001, 100, 5);
+            runAlgorithm(1, "vi", se, 2, 2, 0, 0.001, 100, 5);
+        }
+        /*    for (int se = 1; se <= 3; se++)
+                for (int ag = 1; ag <= se; ag++) {
+                    //int se = 5;
+                    // int ag = 3;
                     //for(int doms = ag; doms >=2; doms--)
-            runAlgorithm(1,"hybridVI", se,ag,2,2,10);
+                    runAlgorithm(1, "vi", se, ag, 2, 0, 0.001, 100, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 150, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 100, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 50, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 1000, 0.001, 150, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 1000, 0.001, 100, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 1000, 0.001, 50, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 500, 0.001, 150, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 500, 0.001, 100, 10);
+                    runAlgorithm(1, "rtdp", se, ag, 2, 500, 0.001, 50, 10);
+
+                }*/
+  /*          for (int ag = 1; ag <= 2; ag++) {
+                //int se = 5;
+                // int ag = 3;
+                //for(int doms = ag; doms >=2; doms--)
+                runAlgorithm(1, "vi", 4, ag, 2, 2000,0.001,100,10);
+                runAlgorithm(1, "rtdp", 4, ag, 2, 2000, 0.001,100,10);
+                runAlgorithm(1, "uct", 4, ag, 2, 2000, 0.001,100,10);
+            }*/
+
         }
        // runAlgorithm("hybridUct",2,2,1,2,2000);
-       // runAlgorithm("uct",2,2,1,2,2000);
-       /* runAlgorithm("vi",2,1,1,2,2);
-        runAlgorithm("hybridVI",2,1,1,2,2);
-        runAlgorithm("uct",2,1,1,2,2000);
-        runAlgorithm("hybridUct",2,1,1,2,2000);
-        runAlgorithm("vi",4,2,1,2,2);
-        runAlgorithm("hybridVI",4,2,1,2,2);
-        runAlgorithm("uct",4,2,1,2,2000);
-        runAlgorithm("hybridUct",4,2,1,2,2000);
-        */
 
 
-        //runAlgorithm(30,"hybridVI", 3,3,2,2,2);
-        //runAlgorithm(2,"vi",4,3,2,2,1);
-      /*  runAlgorithm("vi",4,2,1,2,2);
-        runAlgorithm("hybridUct",4,2,1,2,2000);
-        runAlgorithm("uct",4,2,1,2,2000);
-        runAlgorithm("hybridUct",4,2,1,2,4000);
-        runAlgorithm("uct",4,2,1,2,4000);
-        runAlgorithm("hybridUct",4,2,1,3,2000);
-        runAlgorithm("uct",4,2,1,3,2000);
-        runAlgorithm("hybridUct",4,2,1,3,4000);
-        runAlgorithm("uct",4,2,1,3,4000);*/
-
-  //      runAlgorithm("vi",3,2,1,2,2);
-//runAlgorithm("vi",3,3,1,2,2);
-
-
-        //  for(int i = 0; i < 5; i ++) {
-        //       runAlgorithm("uct", 2, 2, 1, 2, 2000);
-        //   }
-
-
-        //  for (int se = 1; se <= 3; se++)
-   /*    for(int numUCT = 3000; numUCT <= 5000; numUCT+= 500)
-            for (int ag = 1; ag <= 3; ag++){
-                for (int i = 1; i <= 10; i++) {
-                    runAlgorithm("uct",3, ag, i, 3, numUCT);
-                }}
-
-*/
-     /*  int se = 3;
-        int horizon=3;
-            for (int numUCT = 50; numUCT < 2200; numUCT = numUCT + 200) {
-                // for (int se = 1; se <= 3; se++)
-                for (int ag = 1; ag <= se; ag++)
-                    for (int i = 1; i <= 10; i++) {
-                        runAlgorithm("uct", se, ag, i, horizon, numUCT);
-                    }
-            }*/
-    //}
-        /*    for (int se = 1; se <= 4; se++)
-                for (int ag = 1; ag <= se; ag++)
-                   // for (int i = 1; i <= 10; i++) {
-                        runAlgorithm("vi",se, ag, 1, horizon, 0);*/
-                    //}
-
-
-        // MultipleAgentsVI(2, 2, 1);
-
-
-
-
-           // MultipleAgentsVI(2, 1, i);
-       // }
-  //  }
- //   }
-   // }
-       // writerAllVI.close();
-
-       /* for(int i = 1; i <= 10; i++) {
-                pw.write(sb.toString());
-                 MultipleAgentsVI(4,4,i);
-                pw.close();    MultipleAgentsUCT(4,4,i);*/
-
-
-  /*      for (int se = 1; se <= 3; se++)
-            for (int ag = 1; ag <= se; ag++)
-                for (int i = 1; i <= 3; i++)
-                    MultipleAgentsVI(se, ag, 1);
-
-      for (int horizon = 2; horizon < 20; horizon = horizon + 5)
-            for (int numUCT = 50; numUCT < 500; numUCT = numUCT + 200)
-            for (int se = 1; se <= 4; se++)
-                    for (int ag = 1; ag <= se; ag++)
-       for (int i = 1; i <= 3; i++) {
-            //MultipleAgentsUCT(6, 6, i, 50, 5);
-            MultipleAgentsUCT(se, ag, 1, numUCT, horizon);
-        }
-
-        for (int ag = 1; ag <= 4; ag++)
-            for (int i = 1; i <= 3; i++)
-                MultipleAgentsVI(4, ag, 1);
-
-
-                writerAllVI.close();
-                  writerAllUCT.close();
-
-            }*/
-
-    private static void runAlgorithm(int numOfDomains, String algorithm, int nSensors, int nAgents, int horizon, int numUCT, int iterations) {
+    private static void runAlgorithm(int numOfDomains, String algorithm, int nSensors, int nAgents, int horizon, int numRollouts,double maxDelta,int maxLength,  int iterations) {
 
         NUM_OF_AGENTS = nAgents;
         NUM_OF_SENSORS = nSensors;
@@ -216,14 +148,18 @@ public class main {
         if (algorithm.equals("vi")) {
             planner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 100000);
         } else if (algorithm.equals("uct")) {
-            planner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
+            planner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numRollouts, 2);
         } else if (algorithm.equals("hybridUct")) {
-            Planner innerPlanner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numUCT, 2);
-            planner = new HybridPlanner(innerPlanner, numOfDomains,horizon,numUCT);
+            Planner innerPlanner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numRollouts, 2);
+            planner = new HybridPlanner(innerPlanner, numOfDomains,horizon,numRollouts);
         } else if (algorithm.equals("hybridVI")) {
-            Planner innerPlanner = new ValueIteration(domain, DISCOUNT, hashingFactory, 0.001, 100000);
+            Planner innerPlanner = new ValueIteration(domain, DISCOUNT, hashingFactory, maxDelta, 100000);
             planner = new HybridPlanner(innerPlanner,numOfDomains, 0.001, 100000);
+        }
+//	public RTDP(SADomain domain, double gamma, HashableStateFactory hashingFactory, double vInit, int numRollouts, double maxDelta, int maxDepth){
 
+        else if (algorithm.equals("rtdp")) {
+            planner = new RTDP(domain,DISCOUNT,hashingFactory,0,numRollouts,maxDelta,maxLength);
         }
 
         Policy p = planner.planFromState(initialState);
@@ -270,11 +206,11 @@ public class main {
 
             try {
                 //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
-                writeResults(algorithm, numOfDomains,nSensors, nAgents, numUCT, horizon, writerAll, totalReward, totalTimePlan, totalTimeTot, testNum, notFixed);
-                if (algorithm == "")
-                    writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm, p, allStates);
-                else
-                    writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm, p, allStates);
+                writeResults(algorithm, numOfDomains,nSensors, nAgents, numRollouts, horizon,maxDelta,maxLength, writerAll, totalReward, totalTimePlan, totalTimeTot, testNum, notFixed);
+               // if (algorithm == "")
+               //     writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm, p, allStates);
+               // else
+               //     writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm, p, allStates);
                 //  writePolicy33((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
 
 
@@ -302,7 +238,7 @@ public class main {
 
 
     //public static void writeResults( PrintWriter writerAll, Policy p, State initialState, List<State> allStates, String output, double totReward, long totalTime, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
-        public static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numOfUCT, int horizon, PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum, int notFixed) throws FileNotFoundException, UnsupportedEncodingException {
+        public static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numOfinnerRollouts, int horizon, double maxDelta,int maxDepth,PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum, int notFixed) throws FileNotFoundException, UnsupportedEncodingException {
 
         //PrintWriter writer = new PrintWriter(output + ".csv");
         StringBuilder sb = new StringBuilder();
@@ -310,19 +246,38 @@ public class main {
             sb.append(numOfDomains);
             sb.append(',');
             if(algorithm.equals("uct")||algorithm.equals("hybridUct") ) {
-                sb.append(numOfUCT);
+                sb.append(numOfinnerRollouts);
                 sb.append(',');
                 sb.append(horizon);
                 sb.append(',');
+                sb.append("N/A");
+                sb.append(',');
+                sb.append("N/A");
+                sb.append(',');
             }
           //  else if(algorithm.equals("vi"))
-            else
-            {
-                sb.append("N/A");
+            else if(algorithm.equals("rtdp")) {
+                sb.append(numOfinnerRollouts);
                 sb.append(',');
                 sb.append("N/A");
+                sb.append(',');
+                sb.append(maxDelta);
+                sb.append(',');
+                sb.append(maxDepth);
                 sb.append(',');
             }
+                else
+                {
+                    sb.append("N/A");
+                    sb.append(',');
+                    sb.append("N/A");
+                    sb.append(',');
+                    sb.append(maxDelta);
+                    sb.append(',');
+                    sb.append("N/A");
+                    sb.append(',');
+                }
+
             sb.append(testNum);
             sb.append(',');
             sb.append(totReward);
