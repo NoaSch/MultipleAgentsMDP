@@ -74,7 +74,7 @@ public class main {
         writerAll.flush();
 
         //runAlgorithm(1, "vi", 5, 1, 2, 0, 0.001, 100, 5);
-        runAlgorithm(2,"hybridVI",4,2,1,0,0.001,0,3);
+        runAlgorithm(2,"hybridVI",3,2,1,0,0.001,0,3);
 
         //  runAlgorithm(1, "vi", 10, 1, 2, 0, 0.001, 100, 5);
        /* for(int se = 8; se <=20;se++)
