@@ -39,7 +39,7 @@ public class simpleDataMuleStateModel implements FullStateModel {
         int newNum = chooseSubSetSize(probs);
 
         Set<Integer> newBrokens = randomSubSet(newNum,canBeBroken);
-        Integer[] newLastRepair = addOne(currentState.timeFromLastRepair, repaired,newBrokens);
+        Map<Integer,Integer> newLastRepair = addOne(currentState.timeFromLastRepair, repaired,newBrokens);
         DataMulesState dms = new DataMulesState(getLocsAfter(currentState,actionsArr,((MuleSimpleAction) (action))), newLastRepair);
         return new GenericOOState(dms);
     }
@@ -129,7 +129,7 @@ public class simpleDataMuleStateModel implements FullStateModel {
         Set<Set<Integer>> powSet = powerSet(canBeBroken);
         if(powSet.isEmpty())
         {
-            Integer[] newLastRepair = addOne(currentState.timeFromLastRepair, repaired);
+            Map<Integer,Integer> newLastRepair = addOne(currentState.timeFromLastRepair, repaired);
 
             StateTransitionProb stp = new StateTransitionProb(new GenericOOState(new DataMulesState(getLocsAfter(currentState,actionsArr,((MuleSimpleAction) (action))), newLastRepair)), 1);
             result.add(stp);
@@ -144,13 +144,13 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
             //add the known broken to the new broken set
             //for(int i = 0; i < NUM_OF_SENSORS;  i++)
-            for (int i = 0; i < currentState.timeFromLastRepair.length; i++)
+            for(int i : currentState.timeFromLastRepair.keySet())
             {
-                if(currentState.timeFromLastRepair[i] == -1 && !newBrokens.contains(i) && !repaired.contains(i))
+                if(currentState.timeFromLastRepair.get(i) == -1 && !newBrokens.contains(i) && !repaired.contains(i))
                     newBrokens.add(i);
             }
 
-            Integer[] newLastRepair = addOne(currentState.timeFromLastRepair, repaired,newBrokens);
+            Map<Integer,Integer> newLastRepair = addOne(currentState.timeFromLastRepair, repaired,newBrokens);
             StateTransitionProb stp = new StateTransitionProb(new GenericOOState(new DataMulesState(getLocsAfter(currentState,actionsArr,((MuleSimpleAction) (action))), newLastRepair)), prob);
             result.add(stp);
 
@@ -159,19 +159,20 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
     }
 
-    private Integer[] addOne(Integer[] current, Set<Integer> repaired) {
-        Integer[] result = new Integer[current.length];
+    private  Map<Integer, Integer> addOne(Map<Integer, Integer> current, Set<Integer> repaired) {
+        Map<Integer, Integer> result = null;
 
-        for (int i = 0; i < current.length; i++)
+
+        for (Integer i: current.keySet())
         {
-            result[i] = new Integer(current[i]);
+            result.put(i,current.get(i));
             if(repaired.contains(i))
             {
-                result[i] = 1;
+                result.put(i,1);
             }
 
-            else if(current[i] != -1 && current[i] != 0 && current[i] < GUARANTEED_REMAIN_OK)
-                result[i] +=1;
+            else if(current.get(i) != -1 && current.get(i) != 0 && current.get(i) < GUARANTEED_REMAIN_OK)
+                result.put(i,current.get(i)+1);
         }
         return result;
     }
@@ -278,7 +279,7 @@ public class simpleDataMuleStateModel implements FullStateModel {
         Set<Integer> working = findWorking(currentState.timeFromLastRepair);
 
         for (Integer i : working) {
-            if (currentState.timeFromLastRepair[i] >= GUARANTEED_REMAIN_OK) {
+            if (currentState.timeFromLastRepair.get(i) >= GUARANTEED_REMAIN_OK) {
                 result.add(i);
             }
         }
@@ -286,32 +287,33 @@ public class simpleDataMuleStateModel implements FullStateModel {
     }
 
 
-    private Set<Integer> findWorking(Integer[] lastRepair) {
+    private Set<Integer> findWorking(Map<Integer,Integer> lastRepair) {
         Set<Integer> result = new HashSet<Integer>();
-        for (int i = 0; i < lastRepair.length; i++)
-            if (lastRepair[i] != -1)
+       for(int i: lastRepair.keySet())
+            if (lastRepair.get(i) != -1)
                 result.add(i);
         return result;
     }
 
     //add onte time step to an array
-    private Integer[] addOne(Integer[] current, Set<Integer> except, Set<Integer> broken)
+    private Map<Integer, Integer> addOne(Map<Integer, Integer> current, Set<Integer> except, Set<Integer> broken)
     {
-        Integer[] result = new Integer[current.length];
+        Map<Integer, Integer> result =new HashMap<Integer, Integer>();
 
 
-        for (int i = 0; i < current.length; i++)
+                for (Integer i: current.keySet())
         {
-            result[i] = new Integer(current[i]);
+            result.put(i, current.get(i));
+
             if(except.contains(i))
             {
-                result[i] = 1;
-            }
+                result.put(i,1);
+        }
             else if(broken.contains(i)) {
-                result[i] = -1;
+                result.put(i,-1);
             }
-             else if(current[i] != -1 && current[i] != 0 && current[i] < GUARANTEED_REMAIN_OK)
-                  result[i] +=1;
+             else if(current.get(i) != -1 && current.get(i) != 0 && current.get(i) < GUARANTEED_REMAIN_OK)
+                result.put(i, current.get(i)+1);
             }
         return result;
     }

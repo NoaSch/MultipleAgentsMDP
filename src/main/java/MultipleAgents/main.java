@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import static MultipleAgents.Constants.*;
 
@@ -220,11 +221,12 @@ public class main {
 
     }
 
-    private static int checkLastRepair(Integer[] prev, Integer[] curr) {
+    private static int checkLastRepair(Map<Integer,Integer> prev, Map<Integer,Integer> curr) {
         int ans = 0;
-        for(int i = 0; i < prev.length; i++)
+       // for(int i = 0; i < prev.si; i++)
+        for(Integer i: prev.keySet())
         {
-            if(prev[i] == -1 && curr[i] == -1)
+            if(prev.get(i) == -1 && curr.get(i) == -1)
                 ans +=1;
 
         }

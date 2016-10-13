@@ -11,6 +11,7 @@ import java.util.List;
 
 import static MultipleAgents.Constants.ACTION_REPAIR;
 import static MultipleAgents.Constants.ACTION_STAY;
+import static MultipleAgents.DataMulesDomain.graph;
 
 /**
  * Created by noa on 29-Aug-16.
@@ -66,7 +67,7 @@ public class MultipleAction implements ActionType {
               /*  if (currState.timeFromLastRepair[currState.agentsLoc[i]] < GUARANTEED_REMAIN_OK ||
                         !currState.brokenSensors.contains(currState.agentsLoc[i])) {
                     return myList; //return empty List*/
-                if (currState.timeFromLastRepair[currState.agentsLoc[i]] != -1)
+                if (currState.timeFromLastRepair.get(currState.agentsLoc[i]) != -1)
                     // return myList;
                     return emptyList;
 
@@ -77,8 +78,8 @@ public class MultipleAction implements ActionType {
             else if (currState.agentsLoc[i] == action.actionDestinations[i])
                 return emptyList;
                 //there is no edge between current and destination
-        //   else if (!graph.contains(currState.agentsLoc[i], action.actionDestinations[i]))
-         //   return emptyList;
+           else if (!graph.contains(currState.agentsLoc[i], action.actionDestinations[i]))
+            return emptyList;
 
             else{
             }

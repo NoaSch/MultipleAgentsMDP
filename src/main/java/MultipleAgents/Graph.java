@@ -51,11 +51,11 @@ public class Graph {
             addEdge(v, w);
         }
         while (this.E != E) {
-            int v = r.nextInt(V + 1);
-            int w = r.nextInt(V + 1);
+            int v = r.nextInt(V);
+            int w = r.nextInt(V);
             while(w == v)
             {
-                w = r.nextInt(V + 1);
+                w = r.nextInt(V);
             }
             addEdge(v, w);
         }
