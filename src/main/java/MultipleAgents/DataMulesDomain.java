@@ -5,6 +5,9 @@ import burlap.mdp.singleagent.model.FactoredModel;
 import burlap.mdp.singleagent.model.RewardFunction;
 import burlap.mdp.singleagent.oo.OOSADomain;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 import static MultipleAgents.Constants.*;
 import static MultipleAgents.Permotations.*;
 
@@ -13,7 +16,7 @@ import static MultipleAgents.Permotations.*;
  */
 public class DataMulesDomain implements DomainGenerator {
 
-
+    static Graph graph;
     // Create reward function
     private static RewardFunction rf = new DataMulesRewardFunction();
 
@@ -23,10 +26,20 @@ public class DataMulesDomain implements DomainGenerator {
     // Create the full domainNum
 
     public OOSADomain generateDomain() {
-
+       // writerPrints.write("in generateDomain\n");
+       //writerPrints.flush();
         OOSADomain domain = new OOSADomain();
 
+        //create the graph
+        graph = new Graph(NUM_OF_SENSORS, NUM_OF_SENSORS);
         domain.addStateClass(CLASS_STATE, DataMulesState.class);
+        try {
+            PrintWriter writerGraph = new PrintWriter(OUTPUT_PATH + "results/graph.txt");
+            writerGraph.write(graph.toString());
+            writerGraph.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // String dmsArr[] = {"moveTo0","moveTo0","moveTo0","moveTo1","moveTo1","moveTo1","repair","repair","repair","stay", "stay","stay"};
         vec.clear();
@@ -64,7 +77,8 @@ public class DataMulesDomain implements DomainGenerator {
         simpleDataMuleStateModel smodel = new simpleDataMuleStateModel();
 
         domain.setModel(new FactoredModel(smodel, rf, tf));
-
+      //  writerPrints.write("END generateDomain\n");
+     //   writerPrints.flush();
         return domain;
     }
 

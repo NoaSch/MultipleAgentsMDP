@@ -18,7 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Random;
 
 import static MultipleAgents.Constants.*;
 
@@ -29,29 +28,7 @@ public class main {
 
     public static PrintWriter writerAll;
 
-
-
-
-    public static void main3(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter avgVI = new PrintWriter(OUTPUT_PATH + "avgVI" + ".csv");
-        PrintWriter avgUCT = new PrintWriter(OUTPUT_PATH + "avgUCT" + ".csv");
-
-    }
-    public static void main2(String[] args) {
-       /* String [] strArr = {"s","0","1","r","s","0","1","r"};
-        printCombination(strArr,8,2);
-        System.out.println(vec);
-        System.out.println(vec.size());
-        removeDuplicates(vec);
-        System.out.println(vec);
-        System.out.println(vec.size());*/
-        Random ran = new Random();
-        int x;
-        for(int i = 0; i < 10; i++) {
-            x = ran.nextInt(14 + 1);
-            System.out.println(x);
-        }
-    }
+    public static PrintWriter writerPrints;
 
 
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
@@ -59,6 +36,8 @@ public class main {
         //writerAllVI = new PrintWriter(OUTPUT_PATH + "allSum"+numUCT+".txt", "UTF-8");
         //writerAllVI = new PrintWriter(OUTPUT_PATH + "vi" + ".csv");
         writerAll = new PrintWriter(OUTPUT_PATH + "results/allSum" + ".csv");
+        writerPrints = new PrintWriter(OUTPUT_PATH + "results/prints.txt");
+
         StringBuilder sb = new StringBuilder();
         sb.append("Algorithm name");
         sb.append(',');
@@ -78,7 +57,7 @@ public class main {
         sb.append(',');
         sb.append("Planning runtime");
         sb.append(',');
-        sb.append("total runtime");
+        sb.append("rollout runtime");
         sb.append(',');
         sb.append("# Sensors");
         sb.append(',');
@@ -93,12 +72,15 @@ public class main {
         writerAll.write(sb.toString());
         writerAll.flush();
 
-        runAlgorithm(1, "vi", 7, 1, 2, 0, 0.001, 100, 5);
-        for(int se = 8; se <=20;se++)
+        //runAlgorithm(1, "vi", 5, 1, 2, 0, 0.001, 100, 5);
+        runAlgorithm(2,"hybridVI",4,2,1,0,0.001,0,3);
+
+        //  runAlgorithm(1, "vi", 10, 1, 2, 0, 0.001, 100, 5);
+       /* for(int se = 8; se <=20;se++)
         {
             runAlgorithm(1, "vi", se, 1, 2, 0, 0.001, 100, 5);
             runAlgorithm(1, "vi", se, 2, 2, 0, 0.001, 100, 5);
-        }
+        }*/
         /*    for (int se = 1; se <= 3; se++)
                 for (int ag = 1; ag <= se; ag++) {
                     //int se = 5;
@@ -141,6 +123,8 @@ public class main {
 
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
         List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
+       // System.out.println(allStates.size());
+
 
         long startTime = System.currentTimeMillis();
 
@@ -154,7 +138,7 @@ public class main {
             planner = new HybridPlanner(innerPlanner, numOfDomains,horizon,numRollouts);
         } else if (algorithm.equals("hybridVI")) {
             Planner innerPlanner = new ValueIteration(domain, DISCOUNT, hashingFactory, maxDelta, 100000);
-            planner = new HybridPlanner(innerPlanner,numOfDomains, 0.001, 100000);
+            planner = new HybridPlanner(me,innerPlanner,numOfDomains, 0.001, 100000);
         }
 //	public RTDP(SADomain domain, double gamma, HashableStateFactory hashingFactory, double vInit, int numRollouts, double maxDelta, int maxDepth){
 
@@ -162,11 +146,15 @@ public class main {
             planner = new RTDP(domain,DISCOUNT,hashingFactory,0,numRollouts,maxDelta,maxLength);
         }
 
+
+        writerPrints.write("START Planning\n");
+        writerPrints.flush();
         Policy p = planner.planFromState(initialState);
         long endTimePlan = System.currentTimeMillis();
         long totalTimePlan = endTimePlan - startTime;
-
-     /*   try {
+        writerPrints.write("END Planning\n");
+        writerPrints.flush();
+     /*  try {
             PrintWriter pw = new PrintWriter(OUTPUT_PATH + "tests/policyTest.txt");
             for (State s : allStates) {
                 StringBuilder sb = new StringBuilder();
@@ -179,21 +167,25 @@ public class main {
             e.printStackTrace();
         }*/
 
-        for(int testNum = 0; testNum < iterations; testNum++ )
-        {
+        for(int testNum = 0; testNum < iterations; testNum++ ) {
+            writerPrints.write("START Rollout");
+            writerPrints.flush();
+            startTime = System.currentTimeMillis();
             Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
+            writerPrints.write("end Rollout");
+            writerPrints.flush();
             ep.write(OUTPUT_PATH + "episodes/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm);
-
-            long endTimeTot = System.currentTimeMillis();
-            long totalTimeTot = endTimeTot - startTime;
+            writerPrints.write("END Rollout write");
+            writerPrints.flush();
+            long endTimeRoll = System.currentTimeMillis();
+            long totalTimeRoll = endTimeRoll - startTime;
 
             int notFixed = 0;
             // oPolicyUtils.rollout(p, initialState, domainNum.getModel(),TOTAL_TIME_STEPS).write(OUTPUT_PATH + "viMult");
             DataMulesState prev = (DataMulesState) (((OOState) ep.state(0)).object(Constants.CLASS_STATE));
-            for (int t = 1; t < ep.stateSequence.size(); t++)
-            {
-                DataMulesState curr = (DataMulesState)(((OOState) ep.state(t)).object(Constants.CLASS_STATE));
-                notFixed += checkLastRepair( prev.timeFromLastRepair, curr.timeFromLastRepair);
+            for (int t = 1; t < ep.stateSequence.size(); t++) {
+                DataMulesState curr = (DataMulesState) (((OOState) ep.state(t)).object(Constants.CLASS_STATE));
+                notFixed += checkLastRepair(prev.timeFromLastRepair, curr.timeFromLastRepair);
                 prev = curr;
             }
 
@@ -206,22 +198,26 @@ public class main {
 
             try {
                 //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
-                writeResults(algorithm, numOfDomains,nSensors, nAgents, numRollouts, horizon,maxDelta,maxLength, writerAll, totalReward, totalTimePlan, totalTimeTot, testNum, notFixed);
-               // if (algorithm == "")
-               //     writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm, p, allStates);
-               // else
-               //     writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm, p, allStates);
-                //  writePolicy33((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
-
-
+                writeResults(algorithm, numOfDomains, nSensors, nAgents, numRollouts, horizon, maxDelta, maxLength, writerAll, totalReward, totalTimePlan, totalTimeRoll, testNum, notFixed);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+
+        }
+
+                if (algorithm == "vi")
+                    writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
+                else
+                    writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
+                //  writePolicy33((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
+
+
+
             //      System.out.println("Total Reward" + totalReward);
             //    System.out.println("VI runTime: " + totalTime + " miliseconds");///1000);
-        }
+
     }
 
     private static int checkLastRepair(Integer[] prev, Integer[] curr) {

@@ -62,9 +62,7 @@ public class MultipleAction implements ActionType {
                     return myList; //return empty List*/
                 if (currState.getNumberOfBroken() == 0)
                     //return myList; //return empty List
-                        return emptyList;
-
-
+                    return emptyList;
               /*  if (currState.timeFromLastRepair[currState.agentsLoc[i]] < GUARANTEED_REMAIN_OK ||
                         !currState.brokenSensors.contains(currState.agentsLoc[i])) {
                     return myList; //return empty List*/
@@ -72,20 +70,18 @@ public class MultipleAction implements ActionType {
                     // return myList;
                     return emptyList;
 
-            }
-
-            else if(actions[i].equals(ACTION_STAY))
-            {
+            } else if (actions[i].equals(ACTION_STAY)) {
                 //nothing to do.
             }
             //moving
-            else if(currState.agentsLoc[i] == action.actionDestinations[i])
-//                    actions[i].substring(6)))
-                //return myList; //return empty List
+            else if (currState.agentsLoc[i] == action.actionDestinations[i])
                 return emptyList;
+                //there is no edge between current and destination
+        //   else if (!graph.contains(currState.agentsLoc[i], action.actionDestinations[i]))
+         //   return emptyList;
+
             else{
             }
-
         }
         return myList;
     }

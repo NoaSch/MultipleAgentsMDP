@@ -98,7 +98,6 @@ public class simpleDataMuleStateModel implements FullStateModel {
 
     //Transition function
     public List<StateTransitionProb> stateTransitions(State state, Action action) {
-
         List<StateTransitionProb> result = new ArrayList<StateTransitionProb>();
         DataMulesState currentState;
         if(state instanceof DataMulesState)
@@ -120,7 +119,6 @@ public class simpleDataMuleStateModel implements FullStateModel {
         }
 
         if(currentState.timeFromLastRepair.equals(new int[]{-1, -1})&& currentState.agentsLoc.equals(new int[]{1, 1}))
-        System.out.println(" ");
 
         //find the potentially broken at the next time step
         canBeBroken.clear();

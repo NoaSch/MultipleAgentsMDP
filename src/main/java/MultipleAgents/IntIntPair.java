@@ -5,13 +5,13 @@ package MultipleAgents;
  */
 public class IntIntPair {
     //Domain domainNum;
-    int domainNum;
-    int numVal;
+    int firstNum;
+    int secondNum;
 
    /* public IntIntPair(Domain dom, int n)
     {
         domainNum = dom;
-        numVal = n;
+        secondNum = n;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class IntIntPair {
         if (o == null || getClass() != o.getClass()) return false;
 
         IntIntPair other = (IntIntPair) o;
-        if(numVal != other.numVal)
+        if(secondNum != other.secondNum)
             return false;
         if(domainNum.equals(other.domainNum))
             return true;
@@ -29,8 +29,8 @@ public class IntIntPair {
 
      public IntIntPair(int dom, int n)
     {
-        domainNum = dom;
-        numVal = n;
+        firstNum = dom;
+        secondNum = n;
     }
 
     @Override
@@ -39,13 +39,13 @@ public class IntIntPair {
         if (o == null || getClass() != o.getClass()) return false;
 
         IntIntPair other = (IntIntPair) o;
-        return (domainNum == other.domainNum && numVal ==other.numVal);
+        return (firstNum == other.firstNum && secondNum ==other.secondNum);
     }
 
     @Override
     public int hashCode()
     {
-        return (2^domainNum)*(3^numVal);
+        return (2^firstNum)*(3^ secondNum);
     }
 
 
