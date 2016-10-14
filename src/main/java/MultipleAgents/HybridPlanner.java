@@ -17,6 +17,7 @@ import java.util.*;
 
 import static MultipleAgents.Constants.*;
 import static MultipleAgents.DataMulesDomain.generateDomain;
+import static MultipleAgents.DataMulesDomain.graph;
 
 /**
  * Created by noa on 25-Sep-16.
@@ -35,7 +36,8 @@ public class HybridPlanner extends MDPSolver implements Planner {
     int origSensorsNum = NUM_OF_SENSORS;
     int origAgentsNum = NUM_OF_AGENTS;
     Policy[] policyArr;
-    int[][] domainsSize;
+   // int[][] domainsSize;
+   Map <Integer,Integer> domainsSize;
     int numUCT;
     int horizon;
     int maxItr;
@@ -95,7 +97,8 @@ public class HybridPlanner extends MDPSolver implements Planner {
         //set the nubmer of agents
         for(int i = 0; i < currNumOfDomains; i++)
         {
-            agentLocs[i] = new Integer[domainsSize[i][1]];
+           // agentLocs[i] = new Integer[domainsSize[i][1]];
+            agentLocs[i] = new Integer[domainsSize.get(i)];
         }
 
         int domainNum;
@@ -151,7 +154,8 @@ public class HybridPlanner extends MDPSolver implements Planner {
         //   plicyMap = null;
 
         //dmsArr = new DataMulesState[currNumOfDomains];
-        domainsSize = new int[currNumOfDomains][2];
+        //domainsSize = new int[currNumOfDomains][2];
+        domainsSize = new HashMap<Integer, Integer>();
 
 
         OOSADomain[] domains = new OOSADomain[currNumOfDomains];
@@ -221,28 +225,30 @@ public class HybridPlanner extends MDPSolver implements Planner {
 
         //calc how many sensors
 
-        for(int i = firstExraSensor; i < currNumOfDomains; i ++)
+      /*  for(int i = firstExraSensor; i < currNumOfDomains; i ++)
         {
             domainsSize[i][0] = numOfSens;
-        }
+        }*/
 
         for(int i = firstExraAgent; i < currNumOfDomains; i ++)
         {
-            domainsSize[i][1] = numOfAg;
+            //domainsSize[i][1] = numOfAg;
+            domainsSize.put(i,numOfAg);
         }
 
 
         int idx;
-        for(idx = 0; idx < firstExraSensor; idx++)
+       /* for(idx = 0; idx < firstExraSensor; idx++)
         {
             domainsSize[idx][0] = numOfSens + 1;
-        }
+        }*/
 
         //calc how many agents
 
         for(idx = 0; idx < firstExraAgent; idx++)
         {
-            domainsSize[idx][1] = numOfAg + 1;
+            //domainsSize[idx][1] = numOfAg + 1;
+            domainsSize.put(idx,numOfAg + 1);
         }
 
         while (sNum != currNumOfDomains *numOfSens)
@@ -312,7 +318,8 @@ public class HybridPlanner extends MDPSolver implements Planner {
        {
            IntIntPair dmp = new IntIntPair(i, 0);
            agentsTosDom.put(i, dmp);
-           domainsSize[i][1]= 1;
+         //  domainsSize[i][1]= 1;
+           domainsSize.put(i,1);
        }
        //set the current agents' location to the agent's domain
         for(int i =0; i < NUM_OF_AGENTS; i++)
@@ -323,7 +330,7 @@ public class HybridPlanner extends MDPSolver implements Planner {
             li.add(dmState.agentsLoc[i]);
             sensorsInDomains.put(i,li); //////////////////works only if the agents in start 0,1,2....?
             setSensors++;
-            domainsSize[dmState.agentsLoc[i]][0] = 1;
+            //domainsSize[dmState.agentsLoc[i]][0] = 1;
         }
         //set the left seneors to domains
         while(setSensors != NUM_OF_SENSORS)
@@ -339,45 +346,107 @@ public class HybridPlanner extends MDPSolver implements Planner {
 
     private void setNumDomainsiIsNOTNumAgents(State initialState) {
         setNumDomainsiIsNumAgents(initialState);
-        System.out.println("blabla");
         mergeDomains();
     }
 
     private void mergeDomains() {
-        List<Integer> except = new ArrayList<Integer>();
-        while(currNumOfDomains != origNumOfDomains)
+        List<Integer> tmpExcept = new ArrayList<Integer>();
+        List<Integer> tried = new ArrayList<Integer>();
+        boolean merged = false;
+        while(currNumOfDomains != origNumOfDomains && !merged)
         {
-
-            boolean merged = false;
-            while(!merged)
-            {
-                int minDomain = findMinDomain(except,currNumOfDomains - 2);
+                int minDomain = findMinDomain(tmpExcept,currNumOfDomains - 1);
+                tried.add(minDomain);
+                tmpExcept.addAll(tried);
                 int min2;
-                except.add(minDomain);
-                int size = except.size();
+                if(!tmpExcept.contains(minDomain))
+                    tmpExcept.add(minDomain);
+                int size = tmpExcept.size();
                 for(int i = 0; i < currNumOfDomains-size && !merged;i++)
                 {
-                    min2 = findMinDomain(except,currNumOfDomains - 2);
+                    min2 = findMinDomain(tmpExcept,currNumOfDomains - 1);
                     merged = tryMerge(minDomain, min2);
                 }
+            tmpExcept.clear();
             }
 
 
         }
-    }
 
     private boolean tryMerge(int minDomain, int min2) {
+        for(Integer se1 : sensorsInDomains.get(minDomain))
+            for(Integer se2 : sensorsInDomains.get(min2))
+            {
+                if(graph.contains(se1,se2)) {
+                    merge(minDomain, min2);
+                    return true;
+                }
+            }
         return false;
     }
 
-    private int findMinDomain(List<Integer> except, int from) {
-        int ans;
-            ans = from;
-        //find the domain with the minimum sensors
-        for(int i = from -1  ; i >= 0 && !except.contains(i) ; i--)
+    private void merge(int to, int from) {
+        //add the sensors
+
+        //allways merge to left
+        if(to> from) {
+            int tmp = from;
+            from = to;
+            to = tmp;
+        }
+
+            for (Integer se2 : sensorsInDomains.get(from)) {
+                sensorsInDomains.get(to).add(se2);
+                //domainsSize[to][0]++;
+            }
+
+        //BiMap<IntIntPair, Integer> currInvSgents = agentsTosDom.inverse();
+        inverseAgents = agentsTosDom.inverse();
+        Set <IntIntPair> iipList = inverseAgents.keySet();
+        List<Integer> toDelete = new ArrayList<Integer>();
+
+        //add the agents
+        for(IntIntPair iip : iipList)
         {
-            if(domainsSize[i][0] < domainsSize[ans][0])
-                ans =i;
+            if(iip.firstNum == from)
+            {
+                toDelete.add(inverseAgents.get(iip));
+                //agentsTosDom.remove(origAgentNum);
+               // agentsTosDom.put(origAgentNum,new IntIntPair(d1,domainsSize[d1][1]));
+
+            }
+        }
+        for(Integer toMove : toDelete)
+        {
+            agentsTosDom.remove(toMove);
+           //  agentsTosDom.put(toMove,new IntIntPair(to,domainsSize[to][1]));
+            //domainsSize[to][1]++;
+            agentsTosDom.put(toMove,new IntIntPair(to,domainsSize.get(to)));
+            int tmp = domainsSize.get(to)+1;
+            domainsSize.put(to,tmp);///check if bigger
+        }
+        domainsSize.remove(from);
+        sensorsInDomains.remove(from);
+        ///decrease domain size in 1;
+        currNumOfDomains--;
+    }
+
+    private int findMinDomain(List<Integer> except, int from) {
+        int ans = -1;
+        for(int i = from; i >=0 ;i--)
+           if(!except.contains(i)) {
+               ans = i;
+               break;
+           }
+
+        //find the domain with the minimum sensors
+        for(int i = from   ; i >= 0 ; i--)
+        {
+            //if( !except.contains(i) && domainsSize[i][0] < domainsSize[ans][0])
+            int newSize = getSensorsNum(i);
+            int oldSize = getSensorsNum(ans);
+            if( (!except.contains(i)) &&  newSize< oldSize)
+                ans = i;
         }
         return ans;
     }
@@ -390,7 +459,7 @@ public class HybridPlanner extends MDPSolver implements Planner {
                 {
                         if(originalDom.graph.contains(i,sens))
                         {
-                            domainsSize[domNum][0] +=1 ;
+                            //domainsSize[domNum][0] +=1 ;
                            //IntIntPair newIIP = new IntIntPair(domNum, i);
                             //sensorsTosDom.put(i,newIIP);
                             sensorsInDomains.get(domNum).add(i);
@@ -516,13 +585,14 @@ public class HybridPlanner extends MDPSolver implements Planner {
      //get the number of sensors in a certain domain
      private int getSensorsNum(int i)
      {
-         return domainsSize[i][0];
+         return sensorsInDomains.get(i).size();
      }
 
     //get the number of sensors in a certain domain
     private int getAgentsNum(int i)
     {
-        return domainsSize[i][1];
+        //return domainsSize[i][1];
+        return domainsSize.get(i);
     }
 }
 
