@@ -8,25 +8,6 @@ public class IntIntPair {
     int firstNum;
     int secondNum;
 
-   /* public IntIntPair(Domain dom, int n)
-    {
-        domainNum = dom;
-        secondNum = n;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        IntIntPair other = (IntIntPair) o;
-        if(secondNum != other.secondNum)
-            return false;
-        if(domainNum.equals(other.domainNum))
-            return true;
-        return false;
-    }*/
-
      public IntIntPair(int dom, int n)
     {
         firstNum = dom;

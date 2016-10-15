@@ -7,6 +7,7 @@ import burlap.behavior.singleagent.auxiliary.StateReachability;
 import burlap.behavior.singleagent.planning.Planner;
 import burlap.behavior.singleagent.planning.stochastic.rtdp.RTDP;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
+import burlap.mdp.core.action.Action;
 import burlap.mdp.core.oo.state.OOState;
 import burlap.mdp.core.oo.state.generic.GenericOOState;
 import burlap.mdp.core.state.State;
@@ -34,47 +35,20 @@ public class main {
 
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
-        //writerAllVI = new PrintWriter(OUTPUT_PATH + "allSum"+numUCT+".txt", "UTF-8");
-        //writerAllVI = new PrintWriter(OUTPUT_PATH + "vi" + ".csv");
-        writerAll = new PrintWriter(OUTPUT_PATH + "results/allSum" + ".csv");
-        writerPrints = new PrintWriter(OUTPUT_PATH + "results/prints.txt");
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("Algorithm name");
-        sb.append(',');
-        sb.append("# Iterations");
-        sb.append(',');
-        sb.append("Horizon");
-        sb.append(',');
-        sb.append("MaxDelta");
-        sb.append(',');
-        sb.append("maxDepth");
-        sb.append(',');
-        sb.append("Instance");
-        sb.append(',');
-        sb.append("Accumulated reward ");
-        sb.append(',');
-        sb.append("# rollouts");
-        sb.append(',');
-        sb.append("Planning runtime");
-        sb.append(',');
-        sb.append("rollout runtime");
-        sb.append(',');
-        sb.append("# Sensors");
-        sb.append(',');
-        sb.append("# Robots");
-        sb.append(',');
-        sb.append("p ");
-        sb.append(',');
-        sb.append("B (Max New Faults)");
-        sb.append(',');
-        sb.append("totalNotFixed");
-        sb.append('\n');
-        writerAll.write(sb.toString());
-        writerAll.flush();
+        setResultsHeaders();
 
         //runAlgorithm(1, "vi", 5, 1, 2, 0, 0.001, 100, 5);
         runAlgorithm(2,"hybridVI",4,3,1,0,0.001,0,3);
+        runAlgorithm(3,"hybridVI",4,3,1,0,0.001,0,3);
+
+        runAlgorithm(2,"hybridVI",3,2,1,0,0.001,0,3);
+        runAlgorithm(1,"hybridVI",3,2,1,0,0.001,0,3);
+
+        runAlgorithm(2,"hybridVI",4,2,1,0,0.001,0,3);
+        runAlgorithm(1,"hybridVI",4,2,1,0,0.001,0,3);
+
+
+
 
         //  runAlgorithm(1, "vi", 10, 1, 2, 0, 0.001, 100, 5);
        /* for(int se = 8; se <=20;se++)
@@ -109,7 +83,47 @@ public class main {
             }*/
 
         }
-       // runAlgorithm("hybridUct",2,2,1,2,2000);
+
+        //Set the result's cav file headers
+    private static void setResultsHeaders() throws FileNotFoundException {
+        writerAll = new PrintWriter(OUTPUT_PATH + "results/allSum" + ".csv");
+        //    writerPrints = new PrintWriter(OUTPUT_PATH + "results/prints.txt");
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Algorithm name");
+        sb.append(',');
+        sb.append("# Iterations");
+        sb.append(',');
+        sb.append("Horizon");
+        sb.append(',');
+        sb.append("MaxDelta");
+        sb.append(',');
+        sb.append("maxDepth");
+        sb.append(',');
+        sb.append("Instance");
+        sb.append(',');
+        sb.append("Accumulated reward ");
+        sb.append(',');
+        sb.append("# rollouts");
+        sb.append(',');
+        sb.append("Planning runtime");
+        sb.append(',');
+        sb.append("rollout runtime");
+        sb.append(',');
+        sb.append("# Sensors");
+        sb.append(',');
+        sb.append("# Robots");
+        sb.append(',');
+        sb.append("p ");
+        sb.append(',');
+        sb.append("B (Max New Faults)");
+        sb.append(',');
+        sb.append("totalNotFixed");
+        sb.append('\n');
+        writerAll.write(sb.toString());
+        writerAll.flush();
+    }
+    // runAlgorithm("hybridUct",2,2,1,2,2000);
 
 
     private static void runAlgorithm(int numOfDomains, String algorithm, int nSensors, int nAgents, int horizon, int numRollouts,double maxDelta,int maxLength,  int iterations) {
@@ -123,10 +137,9 @@ public class main {
         State initialState = new GenericOOState(DataMulesState.createInitialState());
 
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
+
+        //get the list of all state
         List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
-       // System.out.println(allStates.size());
-
-
         long startTime = System.currentTimeMillis();
 
         Planner planner = null;
@@ -141,48 +154,31 @@ public class main {
             Planner innerPlanner = new ValueIteration(domain, DISCOUNT, hashingFactory, maxDelta, 100000);
             planner = new HybridPlanner(me,innerPlanner,numOfDomains, 0.001, 100000);
         }
-//	public RTDP(SADomain domain, double gamma, HashableStateFactory hashingFactory, double vInit, int numRollouts, double maxDelta, int maxDepth){
-
         else if (algorithm.equals("rtdp")) {
             planner = new RTDP(domain,DISCOUNT,hashingFactory,0,numRollouts,maxDelta,maxLength);
         }
 
 
-        writerPrints.write("START Planning\n");
-        writerPrints.flush();
+     //   writerPrints.write("START Planning\n");
+      //  writerPrints.flush();
+
+        //get the policy
         Policy p = planner.planFromState(initialState);
         long endTimePlan = System.currentTimeMillis();
         long totalTimePlan = endTimePlan - startTime;
-        writerPrints.write("END Planning\n");
-        writerPrints.flush();
-     /*  try {
-            PrintWriter pw = new PrintWriter(OUTPUT_PATH + "tests/policyTest.txt");
-            for (State s : allStates) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(s.toString());
-                sb.append(p.action(s));
-                pw.write(sb.toString());
-                pw.flush();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }*/
+    //    writerPrints.write("END Planning\n");
+     //   writerPrints.flush();
 
+        //rollout the policy
         for(int testNum = 0; testNum < iterations; testNum++ ) {
-            writerPrints.write("START Rollout");
-            writerPrints.flush();
             startTime = System.currentTimeMillis();
             Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
-            writerPrints.write("end Rollout");
-            writerPrints.flush();
             ep.write(OUTPUT_PATH + "episodes/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm);
-            writerPrints.write("END Rollout write");
-            writerPrints.flush();
             long endTimeRoll = System.currentTimeMillis();
             long totalTimeRoll = endTimeRoll - startTime;
 
+            //cont how many sensors was broken 2 consecutive time steps
             int notFixed = 0;
-            // oPolicyUtils.rollout(p, initialState, domainNum.getModel(),TOTAL_TIME_STEPS).write(OUTPUT_PATH + "viMult");
             DataMulesState prev = (DataMulesState) (((OOState) ep.state(0)).object(Constants.CLASS_STATE));
             for (int t = 1; t < ep.stateSequence.size(); t++) {
                 DataMulesState curr = (DataMulesState) (((OOState) ep.state(t)).object(Constants.CLASS_STATE));
@@ -190,15 +186,15 @@ public class main {
                 prev = curr;
             }
 
+            //calculate the total reward
             double totalReward = 0;
             List<Double> rewardList = ep.rewardSequence;
-            // List<Double> rewardList =  PolicyUtils.rollout(p, initialState, domainNum.getModel(),TOTAL_TIME_STEPS).rewardSequence;
             for (double d : rewardList) {
                 totalReward += d;
             }
 
+            //write the result in a csv file
             try {
-                //writeResults(writerAllVI, p, initialState,allStates, OUTPUT_PATH+"policy/" + nSensors + " Sensors ," + nAgents + " Agents PolicyMultAgents test" + testNum , totalReward, totalTimePlan, testNum);
                 writeResults(algorithm, numOfDomains, nSensors, nAgents, numRollouts, horizon, maxDelta, maxLength, writerAll, totalReward, totalTimePlan, totalTimeRoll, testNum, notFixed);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -207,23 +203,15 @@ public class main {
             }
 
         }
-
                 if (algorithm == "vi")
                     writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
                 else
                     writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
-                //  writePolicy33((ValueIteration)planner,OUTPUT_PATH+"policy/"+nSensors + " Sensors ," + nAgents + " Agents " +"test-"+ testNum + " " +algorithm,p, allStates);
-
-
-
-            //      System.out.println("Total Reward" + totalReward);
-            //    System.out.println("VI runTime: " + totalTime + " miliseconds");///1000);
-
     }
 
+    //Count how many sensors was broken and not fixed at the time step after
     private static int checkLastRepair(Map<Integer,Integer> prev, Map<Integer,Integer> curr) {
         int ans = 0;
-       // for(int i = 0; i < prev.si; i++)
         for(Integer i: prev.keySet())
         {
             if(prev.get(i) == -1 && curr.get(i) == -1)
@@ -233,13 +221,9 @@ public class main {
         return ans;
     }
 
-
-
-    //public static void writeResults( PrintWriter writerAll, Policy p, State initialState, List<State> allStates, String output, double totReward, long totalTime, int testNum) throws FileNotFoundException, UnsupportedEncodingException {
-        public static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numOfinnerRollouts, int horizon, double maxDelta,int maxDepth,PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum, int notFixed) throws FileNotFoundException, UnsupportedEncodingException {
-
-        //PrintWriter writer = new PrintWriter(output + ".csv");
-        StringBuilder sb = new StringBuilder();
+    //write the result in a csv file
+    public static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numOfinnerRollouts, int horizon, double maxDelta,int maxDepth,PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum, int notFixed) throws FileNotFoundException, UnsupportedEncodingException {
+            StringBuilder sb = new StringBuilder();
             sb.append(algorithm);
             sb.append(numOfDomains);
             sb.append(',');
@@ -301,6 +285,7 @@ public class main {
 
     }
 
+    //write the policy in a csv file
     public static void writePolicy(ValueIteration vi, String output, Policy p, List<State> allStates)
     {
         try {
@@ -320,22 +305,25 @@ public class main {
             writer.write(sbPol.toString());
             writer.flush();
             for (State s : allStates) {
-                sbPol = new StringBuilder();
-                sbPol.append(s.toString());
-                sbPol.append(',');
-                sbPol.append(',');
-                sbPol.append(p.action(s));
-                if(vi != null) {
+                Action act = p.action(s);
+                if (act == null){}
+                else{
+                    sbPol = new StringBuilder();
+                    sbPol.append(s.toString());
                     sbPol.append(',');
-                    sbPol.append(vi.value(s));
+                    sbPol.append(',');
+                    sbPol.append(act);
+                    if (vi != null) {
+                        sbPol.append(',');
+                        sbPol.append(vi.value(s));
+                    }
+                    sbPol.append('\n');
+                    writer.write(sbPol.toString());
+                    writer.flush();
                 }
-                sbPol.append('\n');
-                writer.write(sbPol.toString());
-                writer.flush();
-        }
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-
 }

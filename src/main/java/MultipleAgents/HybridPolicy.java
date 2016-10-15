@@ -12,8 +12,7 @@ import java.util.List;
  * Created by noa on 25-Sep-16.
  */
 public class HybridPolicy implements Policy{
-  //  private Policy p1;
-  //  private Policy p2;
+
 
     private Policy[] polArr;
     int number;
