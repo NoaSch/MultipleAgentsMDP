@@ -18,6 +18,7 @@ import java.util.*;
 import static MultipleAgents.Constants.*;
 import static MultipleAgents.DataMulesDomain.generateDomain;
 import static MultipleAgents.DataMulesDomain.graph;
+import static MultipleAgents.main.writerPrints;
 
 /**
  * Created by noa on 25-Sep-16.
@@ -141,6 +142,8 @@ public class HybridPlanner extends MDPSolver implements Planner {
 
     //Create the plan with certain number of domains
     public Policy planFromState(State initialState, int nOfDomains) {
+        writerPrints.write("Start PlanfromState");
+        writerPrints.flush();
         origNumOfDomains = nOfDomains;
         currNumOfDomains = NUM_OF_AGENTS;
         //partition the domainNum;
@@ -190,6 +193,8 @@ public class HybridPlanner extends MDPSolver implements Planner {
 
         inverseAgents = agentsTosDom.inverse();
 
+        writerPrints.write("Start PlanfromState");
+        writerPrints.flush();
         return new Policy() {
             public Action action(State s) {
                 try {
@@ -208,6 +213,7 @@ public class HybridPlanner extends MDPSolver implements Planner {
                 return definedForHybrid(s);
             }
         };
+
     }
 
     private void SetDomainsWithOutGraph() {
@@ -328,10 +334,15 @@ public class HybridPlanner extends MDPSolver implements Planner {
             //domainsSize[dmState.agentsLoc[i]][0] = 1;
         }
         //set the left seneors to domains
+        List<Integer> sensorsPool = new ArrayList<Integer>();
+        for(int i = NUM_OF_AGENTS; i < NUM_OF_SENSORS; i++)
+        {
+            sensorsPool.add(i);
+        }
         while(setSensors != NUM_OF_SENSORS)
         {
-                for(int i =0; i < NUM_OF_AGENTS; i++) {
-                 if (findSensorToDomain(i,setSensors))
+                for(int i =0; i < sensorsInDomains.size() && setSensors != NUM_OF_SENSORS; i++) {
+                 if (findSensorToDomain(i,sensorsPool))
                  {
                      setSensors++;
                  }
@@ -340,8 +351,16 @@ public class HybridPlanner extends MDPSolver implements Planner {
         }
 
     private void setNumDomainsiIsNOTNumAgents(State initialState) {
+        writerPrints.write("Start set\n");
+        writerPrints.flush();
         setNumDomainsiIsNumAgents(initialState);
+        writerPrints.write("End set\n");
+        writerPrints.flush();
+        writerPrints.write("Start merge\n");
+        writerPrints.flush();
         mergeDomains();
+        writerPrints.write("End merge\n");
+        writerPrints.flush();
     }
 
     private void mergeDomains() {
@@ -360,12 +379,12 @@ public class HybridPlanner extends MDPSolver implements Planner {
                 for(int i = 0; i < currNumOfDomains-size && !merged;i++)
                 {
                     min2 = findMinDomain(tmpExcept,currNumOfDomains - 1);
+                    tmpExcept.add(min2);
                     merged = tryMerge(minDomain, min2);
                 }
             tmpExcept.clear();
             }
-
-
+        System.out.println("enddd merge");
         }
 
     //check if two domains can be merged
@@ -446,19 +465,44 @@ public class HybridPlanner extends MDPSolver implements Planner {
     }
 
     //find a free sensor to a certain domain
-    private boolean  findSensorToDomain(int domNum, int lastSensor) {
+    private boolean  findSensorToDomain(int domNum, List<Integer> sensPool) {
+        //////should be random?? if yes add all to set
+        for(int i : sensPool)
+        {
+            {
+                for(Integer sens : sensorsInDomains.get(domNum))
+                {
+                    if(originalDom.graph.contains(i,sens)) {
+                        //domainsSize[domNum][0] +=1 ;
+                        //IntIntPair newIIP = new IntIntPair(domNum, i);
+                        //sensorsTosDom.put(i,newIIP);
+                        sensorsInDomains.get(domNum).add(i);
+                        sensPool.remove((Object)i);
+                        return true;
+
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    //find a free sensor to a certain domain
+    private boolean  findSensorToDomainv1(int domNum, int lastSensor) {
         //////should be random?? if yes add all to set
         for(int i = lastSensor; i < NUM_OF_SENSORS; i++)
         {
+            {
                 for(Integer sens : sensorsInDomains.get(domNum))
                 {
-                        if(originalDom.graph.contains(i,sens))
-                        {
+                        if(originalDom.graph.contains(i,sens)) {
                             //domainsSize[domNum][0] +=1 ;
-                           //IntIntPair newIIP = new IntIntPair(domNum, i);
+                            //IntIntPair newIIP = new IntIntPair(domNum, i);
                             //sensorsTosDom.put(i,newIIP);
                             sensorsInDomains.get(domNum).add(i);
                             return true;
+
+                        }
                         }
                     }
     }

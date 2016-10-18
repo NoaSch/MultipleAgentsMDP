@@ -3,7 +3,6 @@ package MultipleAgents;
 import burlap.behavior.policy.Policy;
 import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
-import burlap.behavior.singleagent.auxiliary.StateReachability;
 import burlap.behavior.singleagent.planning.Planner;
 import burlap.behavior.singleagent.planning.stochastic.rtdp.RTDP;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
@@ -37,15 +36,16 @@ public class main {
 
         setResultsHeaders();
 
-        //runAlgorithm(1, "vi", 5, 1, 2, 0, 0.001, 100, 5);
-        runAlgorithm(2,"hybridVI",4,3,1,0,0.001,0,3);
-        runAlgorithm(3,"hybridVI",4,3,1,0,0.001,0,3);
+        //runAlgorithm(1,"vi",4,3,1,0,0.001,0,1);
 
-        runAlgorithm(2,"hybridVI",3,2,1,0,0.001,0,3);
-        runAlgorithm(1,"hybridVI",3,2,1,0,0.001,0,3);
+        //runAlgorithm(4,"hybridVI",6,4,1,0,0.001,0,10);
+      //  runAlgorithm(3,"hybridVI",6,4,1,0,0.001,0,10);
+      //  //runAlgorithm(2,"hybridVI",6,4,1,0,0.001,0,10);
 
-        runAlgorithm(2,"hybridVI",4,2,1,0,0.001,0,3);
-        runAlgorithm(1,"hybridVI",4,2,1,0,0.001,0,3);
+        for (int se =1 ; se <= 15; se++)
+            for (int ag = 1; ag <= se; ag++) {
+                runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 50, 10);
+            }
 
 
 
@@ -87,10 +87,12 @@ public class main {
         //Set the result's cav file headers
     private static void setResultsHeaders() throws FileNotFoundException {
         writerAll = new PrintWriter(OUTPUT_PATH + "results/allSum" + ".csv");
-        //    writerPrints = new PrintWriter(OUTPUT_PATH + "results/prints.txt");
+        writerPrints = new PrintWriter(OUTPUT_PATH + "results/prints.txt");
 
         StringBuilder sb = new StringBuilder();
         sb.append("Algorithm name");
+        sb.append(',');
+        sb.append("Number Of Domains");
         sb.append(',');
         sb.append("# Iterations");
         sb.append(',');
@@ -139,7 +141,6 @@ public class main {
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
 
         //get the list of all state
-        List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
         long startTime = System.currentTimeMillis();
 
         Planner planner = null;
@@ -163,19 +164,28 @@ public class main {
       //  writerPrints.flush();
 
         //get the policy
+        writerPrints.write("Start Planning\n");
+        writerPrints.flush();
         Policy p = planner.planFromState(initialState);
         long endTimePlan = System.currentTimeMillis();
         long totalTimePlan = endTimePlan - startTime;
-    //    writerPrints.write("END Planning\n");
-     //   writerPrints.flush();
+        writerPrints.write("END Planning\n");
+        writerPrints.flush();
 
+        writerPrints.write("Start allStates\n");
+        writerPrints.flush();
+     //   List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
+        writerPrints.write("End allStates\n");
+        writerPrints.flush();
+        writerPrints.write("Start rollout\n");
+        writerPrints.flush();
         //rollout the policy
         for(int testNum = 0; testNum < iterations; testNum++ ) {
-            startTime = System.currentTimeMillis();
+            long startTimeR = System.currentTimeMillis();
             Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
             ep.write(OUTPUT_PATH + "episodes/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm);
             long endTimeRoll = System.currentTimeMillis();
-            long totalTimeRoll = endTimeRoll - startTime;
+            long totalTimeRoll = endTimeRoll - startTimeR;
 
             //cont how many sensors was broken 2 consecutive time steps
             int notFixed = 0;
@@ -203,11 +213,14 @@ public class main {
             }
 
         }
-                if (algorithm == "vi")
+        writerPrints.write("END rollout\n");
+        writerPrints.flush();
+            /*    if (algorithm == "vi")
+
                     writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
                 else
                     writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
-    }
+   */ }
 
     //Count how many sensors was broken and not fixed at the time step after
     private static int checkLastRepair(Map<Integer,Integer> prev, Map<Integer,Integer> curr) {
@@ -225,8 +238,9 @@ public class main {
     public static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numOfinnerRollouts, int horizon, double maxDelta,int maxDepth,PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum, int notFixed) throws FileNotFoundException, UnsupportedEncodingException {
             StringBuilder sb = new StringBuilder();
             sb.append(algorithm);
-            sb.append(numOfDomains);
-            sb.append(',');
+        sb.append(',');
+        sb.append(numOfDomains);
+        sb.append(',');
             if(algorithm.equals("uct")||algorithm.equals("hybridUct") ) {
                 sb.append(numOfinnerRollouts);
                 sb.append(',');
