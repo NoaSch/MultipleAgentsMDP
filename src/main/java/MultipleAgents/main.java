@@ -38,11 +38,45 @@ public class main {
 
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, TimeoutException {
         setResultsHeaders();
+
        try {
         int iterations = 10;
-       for(int se = 2; se <= 20; se ++)
+
+           for(int se = 2; se <= 30; se ++)
+           {
+               for(int ag = 1; ag <= 2; ag ++)
+               {
+                   for(int deg = 1; deg <= Math.min(se-1,3); deg++)
+                   {
+                       for(int i =1; i <= iterations; i++)
+                       {
+                           NUM_OF_SENSORS = se;
+                           NUM_OF_AGENTS = ag;
+                           me = new DataMulesDomain(deg);
+                           domain = me.generateDomain();
+                           //start print the graph in graphs folder
+                           PrintWriter pw = new PrintWriter(OUTPUT_PATH + "graphs/" + NUM_OF_SENSORS + "sensors, " + NUM_OF_AGENTS + "agents, deg-" + deg +" iteraion"+i+ ".txt");
+                           pw.write(graph.toString());
+                           pw.flush();
+                           //end
+                           runAlgorithm(domain, 1, "vi", se, ag, 2, 0, 0.001, 100, i,deg);
+                           runAlgorithm(domain, 1, "rtdp", se, ag, 2, 500, 0.001, 50, i,deg);
+                           runAlgorithm(domain, 1, "rtdp", se, ag, 2, 500, 0.001, 150, i,deg);
+                           runAlgorithm(domain, 1, "rtdp", se, ag, 2, 2000, 0.001, 50, i,deg);
+                           runAlgorithm(domain, 1, "rtdp", se, ag, 2, 2000, 0.001, 150, i,deg);
+
+                           for(int nOfDomains = ag; nOfDomains >=1;nOfDomains-- )
+                           {
+                               runAlgorithm(domain, nOfDomains, "hybridVI", se, ag, 2, 0, 0.001, 0, i,deg);
+                           }
+                       }
+                   }
+               }
+           }
+
+       for(int se = 4; se <= 30; se ++)
         {
-            for(int ag = 1; ag < se; ag ++)
+            for(int ag = 3; ag < se; ag ++)
             {
                 for(int deg = 1; deg <= Math.min(se-1,3); deg++)
                 {
@@ -148,8 +182,8 @@ public class main {
         HashableStateFactory hashingFactory = new SimpleHashableStateFactory();
 
         //get the planning start time
-        long startTime = System.currentTimeMillis();
 
+        long startTime = System.currentTimeMillis();
         //create the planner
         Planner planner = null;
         if (algorithm.equals("vi")) {
@@ -175,7 +209,7 @@ public class main {
         try {
             writerPrints.write("Start Planning\n");
             writerPrints.flush();
-            p = executor.submit(new Planning(planner, initialState)).get(1, TimeUnit.MINUTES);
+            p = executor.submit(new Planning(planner, initialState)).get(5, TimeUnit.MINUTES); //timeout for 5 minutes
         }
 
         catch(TimeoutException e)
