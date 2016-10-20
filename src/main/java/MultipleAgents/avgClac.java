@@ -13,7 +13,7 @@ public class avgClac {
     public static void main(String[] args) {
 
         //calcAVG(OUTPUT_PATH + "allSumUCTNew 5Horizon.csv",10);
-        avgCalc(OUTPUT_PATH + "results/allSum.csv", 10);
+        avgCalc(OUTPUT_PATH + "results/allSum - Copy (38).csv", 10);
         // VIcalcAVG(OUTPUT_PATH + "allSumVI .csv",3);
     }
 
@@ -25,7 +25,7 @@ public class avgClac {
         long timeP = 0;
         int totNotFixed = 0;
         try {
-            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "results/18.10Results.csv");
+            PrintWriter writer = new PrintWriter(OUTPUT_PATH + "results/res -test.csv");
             StringBuilder sb = new StringBuilder();
             sb.append("Algorithm name");
             sb.append(',');
@@ -53,6 +53,8 @@ public class avgClac {
             sb.append(',');
             sb.append("# Robots");
             sb.append(',');
+            sb.append("Graph deg");
+            sb.append(',');
             sb.append("p ");
             sb.append(',');
             sb.append("B (Max New Faults)");
@@ -75,10 +77,13 @@ public class avgClac {
                     line = br.readLine();
                     if (line != null) {
                         strArr = line.split(",");
-                        rew += Float.parseFloat(strArr[7]);
-                        timeP += Integer.parseInt(strArr[9]);
-                        timeT += Integer.parseInt(strArr[10]);
-                        totNotFixed += Integer.parseInt(strArr[15]);
+                        if(!strArr[7].equals("null"))
+                        {
+                            rew += Float.parseFloat(strArr[7]);
+                            timeP += Integer.parseInt(strArr[9]);
+                            timeT += Integer.parseInt(strArr[10]);
+                            totNotFixed += Integer.parseInt(strArr[16]);
+                        }
                     }
                 }
                 if (line != null) {
@@ -97,14 +102,25 @@ public class avgClac {
                     sb.append(',');
                     sb.append(strArr[6]);
                     sb.append(',');
+                    if(rew == 0)
+                        sb.append("null");
+                    else
                     sb.append(rew / sumOf);
                     sb.append(',');
                     sb.append(strArr[8]);
                     sb.append(',');
-                    sb.append(timeP / sumOf);
-                    sb.append(',');
-                    sb.append(timeT / sumOf);
-                    sb.append(',');
+                    if(rew == 0) {
+                        sb.append("null");
+                        sb.append(',');
+                        sb.append("null");
+                        sb.append(',');
+                    }
+                    else {
+                        sb.append(timeP / sumOf);
+                        sb.append(',');
+                        sb.append(timeT / sumOf);
+                        sb.append(',');
+                    }
                     sb.append(strArr[11]);
                     sb.append(',');
                     sb.append(strArr[12]);
@@ -113,7 +129,13 @@ public class avgClac {
                     sb.append(',');
                     sb.append(strArr[14]);
                     sb.append(',');
+                    sb.append(strArr[15]);
+                    sb.append(',');
+                    if(rew == 0)
+                        sb.append("null");
+                        else
                     sb.append(totNotFixed / sumOf);
+
                     sb.append('\n');
                     writer.write(sb.toString());
                     writer.flush();

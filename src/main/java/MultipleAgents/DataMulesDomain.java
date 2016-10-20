@@ -27,6 +27,11 @@ public class DataMulesDomain implements DomainGenerator {
     private static int numOfSensors;
     private static int numOfAgents;
     private static Set<Integer> sensors;
+
+    public DataMulesDomain(int deg) {
+        graph = new Graph(NUM_OF_SENSORS);
+        graph.createGraphByDeg(deg);
+    }
     //
     // Create the full domainNum
 
@@ -36,7 +41,13 @@ public class DataMulesDomain implements DomainGenerator {
         OOSADomain domain = new OOSADomain();
 
         //create the graph
-        graph = new Graph(NUM_OF_SENSORS, NUM_OF_SENSORS);
+        /*if(NUM_OF_SENSORS == 2)
+            graph = new Graph(NUM_OF_SENSORS, 1);
+        else {
+
+            graph = new Graph(NUM_OF_SENSORS, NUM_OF_SENSORS);
+        }*/
+
         domain.addStateClass(CLASS_STATE, DataMulesState.class);
         try {
             PrintWriter writerGraph = new PrintWriter(OUTPUT_PATH + "results/graph.txt");

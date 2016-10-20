@@ -4,10 +4,7 @@ package MultipleAgents;
  * Created by noa on 10-Oct-16.
  */
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Random;
+import java.util.*;
 
 
 public class Graph {
@@ -23,7 +20,7 @@ public class Graph {
         this.V = V;
         this.E = 0;
         this.adj = new boolean[V][V];
-        r = new Random(100);
+        r = new Random(1);
     }
 
     //return subGraph
@@ -86,8 +83,10 @@ public class Graph {
 
     // add undirected edge v-w
     public void addEdge(int v, int w) {
-        if (!adj[v][w])
+        if (!adj[v][w]) {
             E++;
+
+        }
         adj[v][w] = true;
         adj[w][v] = true;
     }
@@ -149,4 +148,38 @@ public class Graph {
         }
         return s.toString();
     }
+
+    public void createFullGraph()
+    {
+        for(int v = 0; v < V; v++)
+        {
+            for(int w = v+1; w < V; w++)
+                addEdge(v,w);
+        }
+    }
+
+    public void createGraphByDeg(int deg)
+    {
+        int[] arr = new int[V];
+        int w;
+        for(int v =0; v < V; v++) {
+            for(int i = 0; i < deg; i++)
+            {
+                while(arr[v] < deg)
+                {
+                    w = r.nextInt(V);
+                    if(v != w)
+                    {
+                        if(!adj[v][w])
+                        {
+                            arr[v]++;
+                            arr[w]++;
+                        }
+                        addEdge(v,w);
+                    }
+                }
+            }
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ import burlap.behavior.policy.Policy;
 import burlap.behavior.singleagent.MDPSolver;
 import burlap.behavior.singleagent.planning.Planner;
 import burlap.behavior.singleagent.planning.stochastic.montecarlo.uct.UCT;
+import burlap.behavior.singleagent.planning.stochastic.rtdp.RTDP;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
 import burlap.mdp.core.action.Action;
 import burlap.mdp.core.oo.state.OOState;
@@ -39,29 +40,41 @@ public class HybridPlanner extends MDPSolver implements Planner {
     Policy[] policyArr;
    // int[][] domainsSize;
    Map <Integer,Integer> domainsSize;
-    int numUCT;
+    int numRollouts;
     int horizon;
+    int maxDepth;
     int maxItr;
     double delta;
-    DataMulesDomain originalDom;
+    //DataMulesDomain originalDom;
 
 
 
-    public HybridPlanner( DataMulesDomain originalDom, Planner p, int numOfDomains, double delta, int maxItr) {
+    public HybridPlanner(Planner p, int numOfDomains, double delta, int maxItr) {
         plannerOriginal = p;
         planner =p;
         currNumOfDomains = numOfDomains;
         this.delta = delta;
         this.maxItr = maxItr;
-        this.originalDom = originalDom;
+     //   this.originalDom = originalDom;
 
     }
-    public HybridPlanner(Planner p, int numOfDomains, int horizon, int numUCT) {
+    public HybridPlanner(Planner p, int numOfDomains, int numRollouts, double delta, int maxDepth) {
+        plannerOriginal = p;
+        planner =p;
+        currNumOfDomains = numOfDomains;
+        this.numRollouts = numRollouts;
+        this.delta = delta;
+        this.maxDepth = maxDepth;
+      //  this.originalDom = originalDom;
+
+    }
+
+    public HybridPlanner(Planner p, int numOfDomains, int horizon, int numRollouts) {
         plannerOriginal = p;
         planner =p;
         currNumOfDomains = numOfDomains;
         this.horizon = horizon;
-        this.numUCT = numUCT;
+        this.numRollouts = numRollouts;
 
     }
 
@@ -183,10 +196,15 @@ public class HybridPlanner extends MDPSolver implements Planner {
             }
             else if(plannerOriginal instanceof UCT)
             {
-                newPlanner = new UCT(dom,plannerOriginal.getGamma(),plannerOriginal.getHashingFactory(),horizon,numUCT,2);
+                newPlanner = new UCT(dom,plannerOriginal.getGamma(),plannerOriginal.getHashingFactory(),horizon, numRollouts,2);
+            }
+            else if(plannerOriginal instanceof RTDP)
+            {
+                newPlanner = new RTDP(dom,plannerOriginal.getGamma(),plannerOriginal.getHashingFactory(), 0,numRollouts,delta,maxDepth);
             }
             Policy pol = newPlanner.planFromState(new GenericOOState(initSmallState));
             policyArr[i] = pol;
+
 
         }
 
@@ -472,7 +490,7 @@ public class HybridPlanner extends MDPSolver implements Planner {
             {
                 for(Integer sens : sensorsInDomains.get(domNum))
                 {
-                    if(originalDom.graph.contains(i,sens)) {
+                    if(graph.contains(i,sens)) {
                         //domainsSize[domNum][0] +=1 ;
                         //IntIntPair newIIP = new IntIntPair(domNum, i);
                         //sensorsTosDom.put(i,newIIP);
@@ -495,7 +513,7 @@ public class HybridPlanner extends MDPSolver implements Planner {
             {
                 for(Integer sens : sensorsInDomains.get(domNum))
                 {
-                        if(originalDom.graph.contains(i,sens)) {
+                        if(graph.contains(i,sens)) {
                             //domainsSize[domNum][0] +=1 ;
                             //IntIntPair newIIP = new IntIntPair(domNum, i);
                             //sensorsTosDom.put(i,newIIP);

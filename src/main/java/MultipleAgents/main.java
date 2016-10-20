@@ -3,6 +3,7 @@ package MultipleAgents;
 import burlap.behavior.policy.Policy;
 import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
+import burlap.behavior.singleagent.auxiliary.StateReachability;
 import burlap.behavior.singleagent.planning.Planner;
 import burlap.behavior.singleagent.planning.stochastic.rtdp.RTDP;
 import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
@@ -19,60 +20,225 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.*;
 
 import static MultipleAgents.Constants.*;
+import static MultipleAgents.DataMulesDomain.graph;
+import static cern.clhep.Units.deg;
 
 /**
  * Created by noa on 24-Aug-16.
  */
 public class main {
 
+    private static OOSADomain domain;
+    private static DataMulesDomain me;
     public static PrintWriter writerAll;
-
+   //static Policy p;
     public static PrintWriter writerPrints;
 
 
-    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, TimeoutException {
 
         setResultsHeaders();
+      /*  for(int deg =1; deg <= 3; deg++)
+        {
+            for(int se = 2; se <30; se++)
+            {
+               for (int ag = 1; ag <= 2; ag++)*/
+        try {
+        NUM_OF_SENSORS = 6;
+            NUM_OF_AGENTS = 5;
+            me = new DataMulesDomain(2);
+            domain = me.generateDomain();
+            PrintWriter pw = new PrintWriter(OUTPUT_PATH + "graphs/" + NUM_OF_SENSORS + "," + NUM_OF_AGENTS + "," + deg + ".txt");
+            pw.write(graph.toString());
+            pw.flush();
+               runAlgorithm(domain, 1, "vi", 6, 5, 2, 0, 0.001, 100, 10,2);
+                NUM_OF_SENSORS = 2;
+                NUM_OF_AGENTS = 1;
+                me = new DataMulesDomain(1);
+                domain = me.generateDomain();
+                pw = new PrintWriter(OUTPUT_PATH + "graphs/" + NUM_OF_SENSORS + "," + NUM_OF_AGENTS + "," + deg + ".txt");
+                pw.write(graph.toString());
+                pw.flush();
+                runAlgorithm(domain, 1, "vi", 2, 1, 2, 0, 0.001, 100, 10,2);
+            NUM_OF_SENSORS = 6;
+            NUM_OF_AGENTS = 5;
+            me = new DataMulesDomain(2);
+            domain = me.generateDomain();
+            pw = new PrintWriter(OUTPUT_PATH + "graphs/" + NUM_OF_SENSORS + "," + NUM_OF_AGENTS + "," + deg + ".txt");
+            pw.write(graph.toString());
+            pw.flush();
+            runAlgorithm(domain, 1, "vi", 6, 5, 2, 0, 0.001, 100, 10,2);
+            NUM_OF_SENSORS = 3;
+            NUM_OF_AGENTS = 2;
+            me = new DataMulesDomain(1);
+            domain = me.generateDomain();
+            pw = new PrintWriter(OUTPUT_PATH + "graphs/" + NUM_OF_SENSORS + "," + NUM_OF_AGENTS + "," + deg + ".txt");
+            pw.write(graph.toString());
+            pw.flush();
+            runAlgorithm(domain, 1, "vi", 3, 2, 2, 0, 0.001, 100, 10,2);
+
+                       /*runAlgorithm(domain, 1, "rtdp", se, ag, 2, 500, 0.001, 50, 10,deg);
+                       runAlgorithm(domain, 1, "rtdp", se, ag, 2, 1000, 0.001, 50, 10,deg);
+                       runAlgorithm(domain, 1, "rtdp", se, ag, 2, 500, 0.001, 100, 10,deg);
+                       runAlgorithm(domain, 1, "rtdp", se, ag, 2, 1000, 0.001, 50, 10,deg);*/
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        System.out.println("done!");
+        }
+  //  }
+
+
+
+
+      /*  for(int i =3; i <16;i++)
+        {
+            for(int deg =1; deg < i; deg++)
+            {
+                System.out.println(i + ",deg:"+ deg);
+                Graph gr = new Graph(i);
+                gr.createGraphByDeg(deg);
+                PrintWriter pw = new PrintWriter(OUTPUT_PATH + "graphs/" + i +"," +deg + ".txt");
+                pw.write(gr.toString());
+                pw.flush();
+            }
+        }*/
+        //setResultsHeaders();
+
+        //runAlgorithm(1, "rtdp", 5, 2, 2, 2000, 0.001, 100, 10);
 
         //runAlgorithm(1,"vi",4,3,1,0,0.001,0,1);
 
         //runAlgorithm(4,"hybridVI",6,4,1,0,0.001,0,10);
-      //  runAlgorithm(3,"hybridVI",6,4,1,0,0.001,0,10);
-      //  //runAlgorithm(2,"hybridVI",6,4,1,0,0.001,0,10);
+        //  runAlgorithm(3,"hybridVI",6,4,1,0,0.001,0,10);
+        //  //runAlgorithm(2,"hybridVI",6,4,1,0,0.001,0,10);
 
-        for (int se =1 ; se <= 15; se++)
-            for (int ag = 1; ag <= se; ag++) {
-                runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 50, 10);
+     /*  for (int se = 3 ; se <= 6; se++)
+        {
+            runAlgorithm(2, "vi", se, 2, 2, 2000, 0.001, 100, 10);
+        }*/
+
+
+
+            /*for (int se = 2 ; se <= 15; se++)
+            for (int ag = 1; ag < se; ag++) {
+                runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 100, 10);
             }
 
 
 
 
         //  runAlgorithm(1, "vi", 10, 1, 2, 0, 0.001, 100, 5);
-       /* for(int se = 8; se <=20;se++)
+        for(int se = 8; se <=20;se++)
         {
             runAlgorithm(1, "vi", se, 1, 2, 0, 0.001, 100, 5);
             runAlgorithm(1, "vi", se, 2, 2, 0, 0.001, 100, 5);
         }*/
-        /*    for (int se = 1; se <= 3; se++)
-                for (int ag = 1; ag <= se; ag++) {
-                    //int se = 5;
-                    // int ag = 3;
-                    //for(int doms = ag; doms >=2; doms--)
-                    runAlgorithm(1, "vi", se, ag, 2, 0, 0.001, 100, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 150, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 100, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 2000, 0.001, 50, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 1000, 0.001, 150, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 1000, 0.001, 100, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 1000, 0.001, 50, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 500, 0.001, 150, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 500, 0.001, 100, 10);
-                    runAlgorithm(1, "rtdp", se, ag, 2, 500, 0.001, 50, 10);
+    /*    DataMulesDomain me;
+        OOSADomain domain;
+        for (int se = 1; se <= 3; se++) {
+            NUM_OF_AGENTS = 1;
+            NUM_OF_SENSORS = se;
+            for (int deg = 1; deg <= NUM_OF_SENSORS - 1; deg++) {
+                me = new DataMulesDomain(deg);
+                domain = me.generateDomain();
+                PrintWriter pw = new PrintWriter(OUTPUT_PATH + "graphs/" + NUM_OF_SENSORS + "," + NUM_OF_AGENTS +","+deg+ ".txt");
+                pw.write(graph.toString());
+                pw.flush();
+                //int se = 5;
+                // int ag = 3;
+                //for(int doms = ag; doms >=2; doms--)
 
-                }*/
+               /* runAlgorithm(domain, 1, "vi", se, 1, 2, 0, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridVI", se, 1, 2, 0, 0.001, 100, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 2000, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 2000, 0.001, 150, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 2000, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 2000, 0.001, 100, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 2000, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 2000, 0.001, 50, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 1000, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 1000, 0.001, 150, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 1000, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 1000, 0.001, 100, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 1000, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 1000, 0.001, 50, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 500, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 500, 0.001, 150, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 500, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 500, 0.001, 100, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, 1, 2, 500, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, 1, 2, 500, 0.001, 50, 10,deg);*/
+
+         /*       NUM_OF_AGENTS = 2;
+                NUM_OF_SENSORS = se;
+                me = new DataMulesDomain(deg);
+                domain = me.generateDomain();
+
+                runAlgorithm(domain, 1, "vi", se, NUM_OF_AGENTS, 2, 0, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridVI", se, NUM_OF_AGENTS, 2, 0, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 2, "hybridVI", se, NUM_OF_AGENTS, 2, 0, 0.001, 100, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 2000, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 2000, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 2000, 0.001, 150, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 2000, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 2000, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 2000, 0.001, 100, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 2000, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 2000, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 2000, 0.001, 50, 10,deg);
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 1000, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 1000, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 2000, 0.001, 50, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 1000, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 1000, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 1000, 0.001, 100, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 1000, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 1000, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 1000, 0.001, 50, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 500, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 500, 0.001, 150, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 500, 0.001, 150, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 500, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 500, 0.001, 100, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 500, 0.001, 100, 10,deg);
+
+
+                runAlgorithm(domain, 1, "rtdp", se, NUM_OF_AGENTS, 2, 500, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 1, "hybridRTDP", se, NUM_OF_AGENTS, 2, 500, 0.001, 50, 10,deg);
+                runAlgorithm(domain, 2, "hybridRTDP", se, NUM_OF_AGENTS, 2, 500, 0.001, 50, 10,deg);
+
+
+            }*/
   /*          for (int ag = 1; ag <= 2; ag++) {
                 //int se = 5;
                 // int ag = 3;
@@ -81,8 +247,11 @@ public class main {
                 runAlgorithm(1, "rtdp", 4, ag, 2, 2000, 0.001,100,10);
                 runAlgorithm(1, "uct", 4, ag, 2, 2000, 0.001,100,10);
             }*/
+     //   }
 
-        }
+  //  }
+
+
 
         //Set the result's cav file headers
     private static void setResultsHeaders() throws FileNotFoundException {
@@ -116,6 +285,8 @@ public class main {
         sb.append(',');
         sb.append("# Robots");
         sb.append(',');
+        sb.append("graph deg");
+        sb.append(',');
         sb.append("p ");
         sb.append(',');
         sb.append("B (Max New Faults)");
@@ -128,12 +299,8 @@ public class main {
     // runAlgorithm("hybridUct",2,2,1,2,2000);
 
 
-    private static void runAlgorithm(int numOfDomains, String algorithm, int nSensors, int nAgents, int horizon, int numRollouts,double maxDelta,int maxLength,  int iterations) {
+    private static void runAlgorithm(OOSADomain domain,int numOfDomains, String algorithm, int nSensors, int nAgents, int horizon, int numRollouts,double maxDelta,int maxLength,  int iterations, int deg) throws InterruptedException, ExecutionException, TimeoutException {
 
-        NUM_OF_AGENTS = nAgents;
-        NUM_OF_SENSORS = nSensors;
-        DataMulesDomain me = new DataMulesDomain();
-        OOSADomain domain = me.generateDomain();
 
         // Create the initial state
         State initialState = new GenericOOState(DataMulesState.createInitialState());
@@ -150,77 +317,176 @@ public class main {
             planner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numRollouts, 2);
         } else if (algorithm.equals("hybridUct")) {
             Planner innerPlanner = new myUCT(domain, DISCOUNT, hashingFactory, horizon, numRollouts, 2);
-            planner = new HybridPlanner(innerPlanner, numOfDomains,horizon,numRollouts);
+            planner = new HybridPlanner(innerPlanner, numOfDomains, horizon, numRollouts);
         } else if (algorithm.equals("hybridVI")) {
             Planner innerPlanner = new ValueIteration(domain, DISCOUNT, hashingFactory, maxDelta, 100000);
-            planner = new HybridPlanner(me,innerPlanner,numOfDomains, 0.001, 100000);
+            planner = new HybridPlanner(innerPlanner, numOfDomains, 0.001, 100000);
+        } else if (algorithm.equals("rtdp")) {
+            planner = new RTDP(domain, DISCOUNT, hashingFactory, 0, numRollouts, maxDelta, maxLength);
+        } else if (algorithm.equals("hybridRTDP")) {
+            Planner innerPlanner = new RTDP(domain, DISCOUNT, hashingFactory, 0, numRollouts, maxDelta, maxLength);
+            //    public HybridPlanner( DataMulesDomain originalDom, Planner p, int numOfDomains, int numRollouts, int delta, int maxDepth) {
+            planner = new HybridPlanner(innerPlanner, numOfDomains, numRollouts, maxDelta, maxLength);
         }
-        else if (algorithm.equals("rtdp")) {
-            planner = new RTDP(domain,DISCOUNT,hashingFactory,0,numRollouts,maxDelta,maxLength);
+
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Policy p = null;
+        try {
+            p = executor.submit(new Planning(planner, initialState)).get(1, TimeUnit.MINUTES);
         }
-
-
-     //   writerPrints.write("START Planning\n");
-      //  writerPrints.flush();
-
-        //get the policy
-        writerPrints.write("Start Planning\n");
-        writerPrints.flush();
-        Policy p = planner.planFromState(initialState);
-        long endTimePlan = System.currentTimeMillis();
-        long totalTimePlan = endTimePlan - startTime;
-        writerPrints.write("END Planning\n");
-        writerPrints.flush();
-
-        writerPrints.write("Start allStates\n");
-        writerPrints.flush();
-     //   List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
-        writerPrints.write("End allStates\n");
-        writerPrints.flush();
-        writerPrints.write("Start rollout\n");
-        writerPrints.flush();
-        //rollout the policy
-        for(int testNum = 0; testNum < iterations; testNum++ ) {
-            long startTimeR = System.currentTimeMillis();
-            Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
-            ep.write(OUTPUT_PATH + "episodes/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm);
-            long endTimeRoll = System.currentTimeMillis();
-            long totalTimeRoll = endTimeRoll - startTimeR;
-
-            //cont how many sensors was broken 2 consecutive time steps
-            int notFixed = 0;
-            DataMulesState prev = (DataMulesState) (((OOState) ep.state(0)).object(Constants.CLASS_STATE));
-            for (int t = 1; t < ep.stateSequence.size(); t++) {
-                DataMulesState curr = (DataMulesState) (((OOState) ep.state(t)).object(Constants.CLASS_STATE));
-                notFixed += checkLastRepair(prev.timeFromLastRepair, curr.timeFromLastRepair);
-                prev = curr;
-            }
-
-            //calculate the total reward
-            double totalReward = 0;
-            List<Double> rewardList = ep.rewardSequence;
-            for (double d : rewardList) {
-                totalReward += d;
-            }
-
-            //write the result in a csv file
-            try {
-                writeResults(algorithm, numOfDomains, nSensors, nAgents, numRollouts, horizon, maxDelta, maxLength, writerAll, totalReward, totalTimePlan, totalTimeRoll, testNum, notFixed);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
+            //Thread thread = new Thread(new Planning(planner,initialState));
+            //thread.start();
+       // thread.join(1000*10);
+       //if (thread.isAlive())
+        //    thread.interrupt();
+        catch(TimeoutException e)
+       // } catch (TimeoutException e) {
+        {
+            for(int i =0; i < iterations; i++)
+            writeResults(algorithm, numOfDomains, nSensors, nAgents, numRollouts, horizon, maxDelta, maxLength, writerAll, "null", deg);
+            executor.shutdown();
         }
-        writerPrints.write("END rollout\n");
-        writerPrints.flush();
-            /*    if (algorithm == "vi")
+       // }// Timeout of 10 minutes.
 
-                    writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
+
+
+        //   writerPrints.write("START Planning\n");
+        //  writerPrints.flush();
+    /*    Thread thread = new Thread(new Planning(planner,initialState));
+        thread.start();
+        thread.join(1000*60);
+        if (thread.isAlive())
+            thread.interrupt();*/
+
+       if(p != null) {
+            executor.shutdown();
+
+            //get the policy
+            writerPrints.write("Start Planning\n");
+            writerPrints.flush();
+            //p = planner.planFromState(initialState);
+            long endTimePlan = System.currentTimeMillis();
+            long totalTimePlan = endTimePlan - startTime;
+            writerPrints.write("END Planning\n");
+            writerPrints.flush();
+
+            writerPrints.write("Start allStates\n");
+            writerPrints.flush();
+            List<State> allStates = StateReachability.getReachableStates(initialState, domain, hashingFactory);
+            writerPrints.write("End allStates\n");
+            writerPrints.flush();
+            writerPrints.write("Start rollout\n");
+            writerPrints.flush();
+            //rollout the policy
+            for (int testNum = 0; testNum < iterations; testNum++) {
+                long startTimeR = System.currentTimeMillis();
+                Episode ep = PolicyUtils.rollout(p, initialState, domain.getModel(), TOTAL_TIME_STEPS);
+                ep.write(OUTPUT_PATH + "episodes/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-" + testNum + " " + algorithm);
+                long endTimeRoll = System.currentTimeMillis();
+                long totalTimeRoll = endTimeRoll - startTimeR;
+
+                //cont how many sensors was broken 2 consecutive time steps
+                int notFixed = 0;
+                DataMulesState prev = (DataMulesState) (((OOState) ep.state(0)).object(Constants.CLASS_STATE));
+                for (int t = 1; t < ep.stateSequence.size(); t++) {
+                    DataMulesState curr = (DataMulesState) (((OOState) ep.state(t)).object(Constants.CLASS_STATE));
+                    notFixed += checkLastRepair(prev.timeFromLastRepair, curr.timeFromLastRepair);
+                    prev = curr;
+                }
+
+                //calculate the total reward
+                double totalReward = 0;
+                List<Double> rewardList = ep.rewardSequence;
+                for (double d : rewardList) {
+                    totalReward += d;
+                }
+
+                //write the result in a csv file
+                try {
+                    writeResults(algorithm, numOfDomains, nSensors, nAgents, numRollouts, horizon, maxDelta, maxLength, writerAll, totalReward, totalTimePlan, totalTimeRoll, testNum, notFixed, deg);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            writerPrints.write("END rollout\n");
+            writerPrints.flush();
+               if (algorithm == "vi")
+
+                    writePolicy((ValueIteration) planner, OUTPUT_PATH + "policy/" + nSensors + " S ," + nAgents + " A "  + " " + algorithm+","+numOfDomains+" de-"+deg,p, allStates);
                 else
-                    writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " Sensors ," + nAgents + " Agents " + "test-"  + " " + algorithm, p, allStates);
-   */ }
+                    writePolicy(null, OUTPUT_PATH + "policy/" + nSensors + " S ," + nAgents + " A " + algorithm+","+numOfDomains+" de-"+deg, p, allStates);
+
+        }
+    }
+
+    private static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numRollouts, int horizon, double maxDelta, int maxLength, PrintWriter writerAll, String aNull, int deg) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(algorithm);
+        sb.append(',');
+        sb.append(numOfDomains);
+        sb.append(',');
+        if(algorithm.equals("uct")||algorithm.equals("hybridUct") ) {
+            sb.append(numRollouts);
+            sb.append(',');
+            sb.append(horizon);
+            sb.append(',');
+            sb.append("N/A");
+            sb.append(',');
+            sb.append("N/A");
+            sb.append(',');
+        }
+        //  else if(algorithm.equals("vi"))
+        else if(algorithm.equals("rtdp")) {
+            sb.append(numRollouts);
+            sb.append(',');
+            sb.append("N/A");
+            sb.append(',');
+            sb.append(maxDelta);
+            sb.append(',');
+            sb.append(maxLength);
+            sb.append(',');
+        }
+        else
+        {
+            sb.append("N/A");
+            sb.append(',');
+            sb.append("N/A");
+            sb.append(',');
+            sb.append(maxDelta);
+            sb.append(',');
+            sb.append("N/A");
+            sb.append(',');
+        }
+
+        sb.append("null");
+        sb.append(',');
+        sb.append("null");
+        sb.append(',');
+        sb.append(TOTAL_TIME_STEPS);
+        sb.append(',');
+        sb.append("null");
+        sb.append(',');
+        sb.append("null");
+        sb.append(',');
+        sb.append(nSensors);
+        sb.append(',');
+        sb.append(nAgents);
+        sb.append(',');
+        sb.append(deg);
+        sb.append(',');
+        sb.append(PROB_SENSOR_BREAK);
+        sb.append(',');
+        sb.append(MAX_BROKEN);
+        sb.append(',');
+        sb.append("null");
+        sb.append('\n');
+        writerAll.write(sb.toString());
+        writerAll.flush();
+    }
 
     //Count how many sensors was broken and not fixed at the time step after
     private static int checkLastRepair(Map<Integer,Integer> prev, Map<Integer,Integer> curr) {
@@ -235,7 +501,7 @@ public class main {
     }
 
     //write the result in a csv file
-    public static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numOfinnerRollouts, int horizon, double maxDelta,int maxDepth,PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum, int notFixed) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void writeResults(String algorithm, int numOfDomains, int nSensors, int nAgents, int numOfinnerRollouts, int horizon, double maxDelta,int maxDepth,PrintWriter writerAll, double totReward, long totalTimePlan, long totalTimeTot, int testNum, int notFixed, int deg) throws FileNotFoundException, UnsupportedEncodingException {
             StringBuilder sb = new StringBuilder();
             sb.append(algorithm);
         sb.append(',');
@@ -288,6 +554,8 @@ public class main {
             sb.append(',');
             sb.append(nAgents);
             sb.append(',');
+        sb.append(deg);
+        sb.append(',');
             sb.append(PROB_SENSOR_BREAK);
             sb.append(',');
             sb.append(MAX_BROKEN);
@@ -339,5 +607,26 @@ public class main {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private static class Planning implements Callable<Policy>{//},Runnable {
+       // private static class Planning implements Runnable {
+
+        Planner planner;
+        State initialState;
+
+        public Planning(Planner planner, State initialState) {
+            this.planner = planner;
+            this.initialState = initialState;
+        }
+
+        public Policy call() throws Exception {
+           Policy  p = planner.planFromState(initialState);
+            return p;
+        }
+
+        /*public void run() {
+            p = planner.planFromState(initialState);
+        }*/
     }
 }
